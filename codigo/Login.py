@@ -1,3 +1,5 @@
+Usuarios= {}
+
 class usuario():
 
   def __init__ (self, NUsuario, DNI, Psw):
