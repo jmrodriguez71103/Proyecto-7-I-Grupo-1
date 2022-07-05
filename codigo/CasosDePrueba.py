@@ -1,4 +1,4 @@
-class Test:
+class Test ():
 
 def T1ValidarDNIyPsw (self):
 	app= app()
