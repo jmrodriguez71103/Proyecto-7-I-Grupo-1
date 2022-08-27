@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 
 
 -- Table mydb.Etapa
-CREATE TABLE IF NOT EXISTS mydb. Etapa (
+CREATE TABLE IF NOT EXISTS mydb.Etapa (
   IDEtapa INT NOT NULL AUTO_INCREMENT,
   Firma BLOB NOT NULL,
   FechaFirma DATE NOT NULL,
