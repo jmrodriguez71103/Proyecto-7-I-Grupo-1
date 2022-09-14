@@ -4,7 +4,7 @@ from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.metrics import dp
 from kivy.uix.floatlayout import FloatLayout
-from kivymd.uix.pickers import MDDatePicker
+from kivymd.uix.pickers import MDDatePicker, MDTimePicker
 import webbrowser
 
 
@@ -279,22 +279,46 @@ KV = """
 <calendario>:
 	name: "calendario"
 
-
+	MDLabel:
+		markup: True
+		text: "[i]Pantalla en progreso[/i]"
+		font_size: 16
+		pos_hint: {"center_x": 0.5, "center_y": 0.95}
 
 	MDRoundFlatButton:
 		id: abrir_calendario
-		text: "[color=#315582][b]Abrir Calendario[/b][/color]"
+		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
 		size_hint: None, None
 		width: 100
-		pos_hint: {"center_x": 0.5, "center_y": 0.5}
+		pos_hint: {"center_x": 0.65, "center_y": 0.5}
 		md_bg_color: 0.93, 0.69, 0.63, 0.2
 		on_release: root.show_date_picker()
+	MDRoundFlatButton:
+		id: abrir_reloj
+		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
+		size_hint: None, None
+		width: 100
+		pos_hint: {"center_x": 0.85, "center_y": 0.5}
+		md_bg_color: 0.93, 0.69, 0.63, 0.2
+		on_release: root.show_time_picker()
 
 	MDLabel:
-		id: text_calendario
-		text: ""
+		id: R1
+		text: "Reuniones"
 		size_hint: None, None
-		pos_hint: {"center_x": 0.5, "center_y": 0.35}
+		pos_hint: {"center_x": 0.25, "center_y": 0.75}
+
+	MDLabel:
+		id: fecha_R1
+		text: "-"
+		size_hint: None, None
+		pos_hint: {"center_x": 0.35, "center_y": 0.5}
+
+	MDLabel:
+		id: hora_R1
+		text: "-"
+		size_hint: None, None
+		pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
 	MDRoundFlatButton:
 		id: boton100000
@@ -303,7 +327,7 @@ KV = """
 		width: 100
 		pos_hint: {"center_x": 0.5, "center_y": 0.2}
 		md_bg_color: 0.93, 0.69, 0.63, 0.2
-		on_release: app.change_screen("Pantalla Principal")
+		on_release: app.root.current = "Pantalla Principal"
 
 
 WindowManager:
@@ -335,23 +359,28 @@ class etapas(Screen):
     pass
 
 class calendario(Screen):
-#	def get_date(self, date):
-#		self.ids.ejemplo_id.text
-#		print(date)
+	def save_date(self,instance, value, date_range):
+		self.ids.fecha_R1.text = str(value)
+	#	self.ids.fecha_R1.text = f'{str(date_range[0])} - {str(date_range[-1])}'
 
-	#Click OK
-	def on_save(self,instance, value, date_range):
-		self.ids.text_calendario.text = str(value)
-	#	self.ids.text_calendario.text = f'{str(date_range[0])} - {str(date_range[-1])}'
+	def save_time(self, intance, time):
+		self.ids.hora_R1.text = str(time)
 
-	#Click Cancel
-	def on_cancel(self, instance, value, date_range):
-		self.ids.text_calendario.text = "--"
+	def cancel_date(self, instance, value):
+		self.ids.fecha_R1.text = "-"
+
+	def cancel_time(self, instance, value):
+		self.ids.hora_R1.text = "-"
 
 	def show_date_picker(self):
 		picker = MDDatePicker()
-		picker.bind(on_save=self.on_save, on_cancel=self.on_cancel)
+		picker.bind(on_save=self.save_date, on_cancel=self.cancel_date)
 		picker.open()
+
+	def show_time_picker(self):
+		time_picker = MDTimePicker()
+		time_picker.bind(time=self.save_time, on_cancel=self.cancel_time)
+		time_picker.open()
 
 
 class WindowManager(ScreenManager):
