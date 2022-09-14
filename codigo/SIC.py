@@ -12,55 +12,58 @@ import webbrowser
 KV = """
 <LoginWindow>:
     name: "main"
+	MDBoxLayout:
+		size: 1, 1
+		orientation: "vertical"
+		md_bg_color: 0.85, 0.8, 0.72, .8
+    	MDCard:
+    		size_hint: None, None
+    		size: 400, 500
+    		pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    		padding: 15
+    		spacing: 25
+    		orientation: 'vertical'
+    		md_bg_color: 0.85, 0.8, 0.72, 1
 
-	MDCard:
-		size_hint: None, None
-		size: 400, 500
-		pos_hint: {"center_x": 0.5, "center_y": 0.5}
-		padding: 15
-		spacing: 25
-		orientation: 'vertical'
-		md_bg_color: 0.85, 0.8, 0.72, 1
+    		MDLabel:
+    			id: prueba
+    			text: "Sistema Integral de Clientes"
+    			font_size: 40
+    			halign: 'center'
+    			size_hint_y: None
+    			padding_y: 10
 
-		MDLabel:
-			id: prueba
-			text: "Sistema Integral de Clientes"
-			font_size: 40
-			halign: 'center'
-			size_hint_y: None
-			padding_y: 10
+    		Image:
+    			source: "logo.jpeg"
+    			size_hint : None, None
+    			pos_hint: {"center_x": 0.5}
 
-		Image:
-			source: "logo.jpeg"
-			size_hint : None, None
-			pos_hint: {"center_x": 0.5}
+    		MDTextField:
+    			id: nombre
+    			hint_text: "Usuario"
+    			icon_right: "account"
+    			size_hint: None, None
+    			width: 200
+    			font_size: 16
+    			pos_hint: {"center_x": 0.5}
 
-		MDTextField:
-			id: nombre
-			hint_text: "Usuario"
-			icon_right: "account"
-			size_hint: None, None
-			width: 200
-			font_size: 16
-			pos_hint: {"center_x": 0.5}
+    		MDTextField:
+    			id: psw
+    			hint_text: "Contraseña"
+    			icon_right: "lock"
+    			size_hint: None, None
+    			width: 200
+    			font_size: 16
+    			pos_hint: {"center_x": 0.5}
 
-		MDTextField:
-			id: psw
-			hint_text: "Contraseña"
-			icon_right: "lock"
-			size_hint: None, None
-			width: 200
-			font_size: 16
-			pos_hint: {"center_x": 0.5}
-
-		MDRoundFlatButton:
-			id: boton1
-			text: "Ingresar"
-			size_hint: None, None
-			width: 100
-			pos_hint: {"center_x": 0.5}
-			on_release:
-                app.change_screen("Pantalla Principal")
+    		MDRoundFlatButton:
+    			id: boton1
+    			text: "Ingresar"
+    			size_hint: None, None
+    			width: 100
+    			pos_hint: {"center_x": 0.5}
+    			on_release:
+                    app.change_screen("Pantalla Principal")
 
 <pantallaPrincipal>:
 	name: "Pantalla Principal"
@@ -210,6 +213,37 @@ KV = """
         		pos_hint: {"center_x": .5, "center_y": .57}
         		padding_y: 10
 
+            MDIconButton:
+    			id: botonVolver
+                icon: "arrow-left-bold"
+    			size_hint: None, None
+    			pos_hint: {"center_x": 0.05, "center_y": 0.88}
+    			md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release: app.change_screen("Pantalla Principal")
+
+    		MDIconButton:
+    			id: botonBorrar
+                icon: "trash-can"
+    			size_hint: None, None
+    			pos_hint: {"center_x": 0.8, "center_y": 0.57}
+    			md_bg_color: 0.93, 0.69, 0.63, 0.2
+
+    		MDIconButton:
+    			id: botonEditar
+                icon: "pencil"
+    			size_hint: None, None
+                width: 30
+    			pos_hint: {"center_x": 0.73, "center_y": 0.57}
+    			md_bg_color: 0.93, 0.69, 0.63, 0.2
+
+    		MDIconButton:
+    			id: botonArchivar
+                icon: "folder"
+    			size_hint: None, None
+    			pos_hint: {"center_x": 0.87, "center_y": 0.57}
+    			md_bg_color: 0.93, 0.69, 0.63, 0.2
+
+
     		MDRoundFlatButton:
     			id: botonBuscar
     			markup: True
@@ -330,6 +364,8 @@ class SIC(MDApp):
         self.data_tables = None
 
     def build(self):
+        self.theme_cls.theme_style= "Light"
+        self.theme_cls.primary_palette = "BlueGray"
         return Builder.load_string(KV)
 
     def add_datatable(self):
@@ -337,15 +373,16 @@ class SIC(MDApp):
             size_hint=(0.8, 0.5),
             pos_hint=(0.5, 0.4),
             background_color_header="#D8CCB7",
+            use_pagination=True,
 
             column_data=[
                 ("Nombre", dp(20)),
                 ("Apellido", dp(20)),
-                ("DNI", dp(10)),
+                ("DNI", dp(20)),
                 ("Direccion", dp(30)),
                 ("Telefono", dp(20)),
                 ("Email", dp(30)),
-                ("Tipo de caso", dp(15)),
+                ("Tipo de caso", dp(20)),
                 ("Motivo", dp(30))
             ],
             row_data=[
