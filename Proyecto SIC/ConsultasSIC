@@ -2,25 +2,44 @@ Clientes:
 
 Alta: INSERT INTO cliente (Nombre, Apellido, DNIC, Direccion, Telefono, Mail, AbogadoDNI) VALUES (NombreCliente, ApellidoCliente, DNICliente, DireccionCliente, TelefonoCliente, MailCliente, DNIAbogado)
 
-Baja: DELETE FROM cliente WHERE IDCliente = IDClienteBorrar
+Baja: DELETE * FROM cliente WHERE IDCliente = IDClienteBorrar
 
 Modificación: UPDATE cliente SET Nombre= NombreCliente, Apellido= ApellidoCliente, DNIC= DNICliente, Direccion= DireccionCliente, Telefono= TelefonoCliente, Mail=MailCliente WHERE IDCliente= IDClienteModificar
 
 Consulta: SELECT * FROM cliente WHERE IDCliente=IDClienteMostrar
 
+Filtros:
+	Por nombre: SELECT * FROM cliente WHERE Nombre=NombreCMostrar
+	Por apellido: SELECT * FROM cliente WHERE Apellido=ApellidoCMostrar
+	Por DNI: SELECT * FROM cliente WHERE DNIC=DNICAMostrar
+
+
+
 Abogado:
 
 Consulta: SELECT * FROM abogado WHERE DNI=DNIAbogado
+
+Validación del logín: SELECT * FROM abogado WHERE NombreA=NombreIngresado AND Contraseña=ContraseñaIngresada
+
 
 Casos:
 
 Alta: INSERT INTO casos (Tipo, FechaInicio, Motivo, IDCliente) VALUES (TipoCaso, FechaICaso, MotivoCaso, IDClienteCaso)
 
-Baja: DELETE FROM casos WHERE IDCaso=IDCasoBorrar
+Baja: DELETE * FROM casos WHERE IDCaso=IDCasoBorrar
 
 Modificacion: UPDATE casos SET Tipo= TipoCaso, FechaInicio= FechaICaso, FechaFin= FechaFCaso, Motivo= MotivoCaso, IDCliente= IDClienteCaso
 
 Consulta: SELECT * FROM casos WHERE IDCaso=IDCasoMostrar
+
+Filtros:
+	Por Tipo: SELECT * FROM casos WHERE Tipo=TipoMostrar
+	Por Fecha de Inicio: SELECT * FROM casos WHERE FechaInicio= FechainicioMostrar
+	Por Cliente: SELECT * FROM casos WHERE IDCliente=IDClienteMostrar
+
+
+
+
 
 Etapas:
 
@@ -28,50 +47,54 @@ Etapas:
 	
 	Alta: INSERT INTO etapa (Firma, FechaFirma, LugarFirma) VALUES (LOAD_FILE('DireccionImagen'), FechaFirma, LugarFirma)
 	
-	Baja: DELETE FROM etapa WHERE IDEtapa = IDEtapaBorrar
+	Baja: DELETE * FROM etapa WHERE IDEtapa = IDEtapaBorrar
 	
-	Modificacion: UPDATE etapa SET Firma= LOAD_FILE('DireccionImagen'), FechaFirma= FechaFirma, LugarFirma= LugarFirma
+	Modificacion: UPDATE etapa SET Firma= LOAD_FILE('DireccionImagen'), FechaFirma=FechaFirma, LugarFirma=LugarFirma
 	
 	Consulta: SELECT * FROM etapa WHERE IDEtapa= IDEtapaMostrar
-	
+
+
 	Etapa 3:
 	
-	Alta: UPDATE etapa SET FechaInicioE3= FechaInicioE3, FechaComisionMedica= FechaComisionMedica, PresentaProntoDespacho= Presenta
+	Alta: UPDATE etapa SET FechaInicioE3= FechaInicioE3, FechaComisionMedica=FechaComisionMedica, PresentaProntoDespacho= Presenta
 	
-	Baja: DELETE FROM etapa WHERE IDEtapa = IDEtapaBorrar
+	Baja: DELETE * FROM etapa WHERE IDEtapa = IDEtapaBorrar
 	
-	Modificacion: UPDATE etapa SET FechaInicioE3= FechaInicioE3, FechaComisionMedica= FechaComisionMedica, PresentaProntoDespacho= Presenta, FechaDictamen= FechaDictamen, FechaConciliacion= FechaConciliacion
+	Modificacion: UPDATE etapa SET FechaInicioE3= FechaInicioE3,FechaComisionMedica= FechaComisionMedica, PresentaProntoDespacho= Presenta,FechaDictamen= FechaDictamen, FechaConciliacion= FechaConciliacion
 	
 	Consulta: SELECT * FROM etapa WHERE IDEtapa= IDEtapaMostrar
 	
+
 	Etapa 4:
 	
 		Etapa Inicio:
 		
 		Alta: UPDATE etapa SET EtapaInicio= EtapaI, FechaInicio= FechaInicio
 		
-		Baja: DELETE FROM etapa WHERE IDEtapa = IDEtapaBorrar
+		Baja: DELETE * FROM etapa WHERE IDEtapa = IDEtapaBorrar
 		
 		Modificacion: UPDATE etapa SET EtapaInicio= EtapaInicio, FechaInicio= FechaInicio
 		
 		Consulta: SELECT * FROM etapa WHERE IDEtapa= IDEtapaMostrar
+
 		
 		Etapa Intermedia: 
 		
 		Alta: UPDATE etapa SET EtapaIntermedia= EtapaIntermedia, FechaIntermedia= FechaIntermedia
 		
-		Baja: DELETE FROM etapa WHERE IDEtapa = IDEtapaBorrar
+		Baja: DELETE * FROM etapa WHERE IDEtapa = IDEtapaBorrar
 		
-		Modificacion: UPDATE etapa SET EtapaIntermedia= EtapaIntermedia, FechaIntermedia= FechaIntermedia
+		Modificacion: UPDATE etapa SET EtapaIntermedia= EtapaIntermedia,FechaIntermedia= FechaIntermedia
 		
 		Consulta: SELECT * FROM etapa WHERE IDEtapa= IDEtapaMostrar
+		
 		
 		Etapa Final:
 		
 		Alta: UPDATE etapa SET EtapaFinal= EtapaFinal, FechaFinal= FechaFinal
 		 
-		Baja: DELETE FROM etapa WHERE IDEtapa = IDEtapaBorrar
+		Baja: DELETE * FROM etapa WHERE IDEtapa = IDEtapaBorrar
 		 
-		Modificacion: UPDATE etapa SET EtapaFinal= EtapaFinal, FechaFinal= FechaFinal
+		Modificacion: UPDATE etapa SET EtapaFinal= EtapaFinal, FechaFinal=FechaFinal
 		
 		Consulta: SELECT * FROM etapa WHERE IDEtapa= IDEtapaMostrar
