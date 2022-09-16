@@ -1,3 +1,4 @@
+from kivy.config import Config
 from kivymd.app import MDApp
 from kivymd.uix.datatables import MDDataTable
 from kivy.lang.builder import Builder
@@ -1897,6 +1898,8 @@ class SIC(MDApp):
         self.listaEtapas = None
         self.menu = None
 
+    Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
+	
     def build(self):
         self.theme_cls.theme_style= "Light"
         self.theme_cls.primary_palette = "BlueGray"
