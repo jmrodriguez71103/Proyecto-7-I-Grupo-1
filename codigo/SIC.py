@@ -370,43 +370,152 @@ KV = """
                 md_bg_color: 0.85, 0.8, 0.72, 0
 
 
-
-        	MDRoundFlatButton:
-        		id: abrir_calendario
+        	MDRaisedButton:
+        		id: abrir_calendario_R1
         		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
         		size_hint: None, None
         		width: 100
         		pos_hint: {"center_x": 0.65, "center_y": 0.5}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
-        		on_release: root.show_date_picker()
-
-        	MDRoundFlatButton:
-        		id: abrir_reloj
+        		on_release: root.show_date_picker_R1()
+        	MDRaisedButton:
+        		id: abrir_reloj_R1
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
         		size_hint: None, None
         		width: 100
         		pos_hint: {"center_x": 0.85, "center_y": 0.5}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
-        		on_release: root.show_time_picker()
-
+        		on_release: root.show_time_picker_R1()
         	MDLabel:
         		id: R1
                 markup:True
         		text: "[color=#315582][b]Reuniones[/b][/color]"
                 font_size: 30
         		pos_hint: {"center_x": 0.92, "center_y": 0.75}
-
         	MDLabel:
         		id: fecha_R1
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.35, "center_y": 0.5}
-
         	MDLabel:
         		id: hora_R1
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        	MDRaisedButton:
+        		id: abrir_calendario_R2
+        		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.65, "center_y": 0.4}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_date_picker_R2()
+        	MDRaisedButton:
+        		id: abrir_reloj_R2
+        		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.4}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_time_picker_R2()
+        	MDLabel:
+        		id: fecha_R2
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.35, "center_y": 0.4}
+        	MDLabel:
+        		id: hora_R2
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        	MDRaisedButton:
+        		id: abrir_calendario_R3
+        		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.65, "center_y": 0.3}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_date_picker_R3()
+        	MDRaisedButton:
+        		id: abrir_reloj_R3
+        		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.3}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_time_picker_R3()
+        	MDLabel:
+        		id: fecha_R3
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.35, "center_y": 0.3}
+        	MDLabel:
+        		id: hora_R3
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        	MDRaisedButton:
+        		id: abrir_calendario_R4
+        		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.65, "center_y": 0.2}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_date_picker_R4()
+        	MDRaisedButton:
+        		id: abrir_reloj_R4
+        		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.2}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_time_picker_R4()
+        	MDLabel:
+        		id: fecha_R4
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.35, "center_y": 0.2}
+        	MDLabel:
+        		id: hora_R4
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.5, "center_y": 0.2}
+        	MDRaisedButton:
+        		id: abrir_calendario_R5
+        		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.65, "center_y": 0.1}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_date_picker_R5()
+        	MDRaisedButton:
+        		id: abrir_reloj_R5
+        		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.1}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.show_time_picker_R5()
+        	MDLabel:
+        		id: fecha_R5
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.35, "center_y": 0.1}
+        	MDLabel:
+        		id: hora_R5
+        		text: "-"
+        		size_hint: None, None
+        		pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        		
+        	MDRoundFlatButton:
+		        id: boton_borrar
+		        markup: True
+		        text: "[color=#315582][b]Borrar[/b][/color]"
+		        size_hint: None, None
+		        width: 100
+		        pos_hint: {"center_x": .95, "center_y": 0.65}
+		        md_bg_color: 0.85, 0.8, 0.72, 0
+		        on_press: root.borrar_r()
 
 
 
@@ -1648,28 +1757,129 @@ class EditarClientes(Screen):
     pass
 
 class calendario(Screen):
-	def save_date(self,instance, value, date_range):
-		self.ids.fecha_R1.text = str(value)
-	#	self.ids.fecha_R1.text = f'{str(date_range[0])} - {str(date_range[-1])}'
 
-	def save_time(self, intance, time):
+	def save_date_R1(self,instance, value, date_range):
+		self.ids.fecha_R1.text = str(value)
+
+	def save_time_R1(self, intance, time):
 		self.ids.hora_R1.text = str(time)
 
-	def cancel_date(self, instance, value):
+	def cancel_date_R1(self, instance, value):
 		self.ids.fecha_R1.text = "-"
 
-	def cancel_time(self, instance, value):
+	def cancel_time_R1(self, instance, value):
 		self.ids.hora_R1.text = "-"
 
-	def show_date_picker(self):
+	def save_date_R2(self,instance, value, date_range):
+		self.ids.fecha_R2.text = str(value)
+
+	def save_time_R2(self, intance, time):
+		self.ids.hora_R2.text = str(time)
+
+	def cancel_date_R2(self, instance, value):
+		self.ids.fecha_R2.text = "-"
+
+	def cancel_time_R2(self, instance, value):
+		self.ids.hora_R2.text = "-"
+
+	def save_date_R3(self,instance, value, date_range):
+		self.ids.fecha_R3.text = str(value)
+
+	def save_time_R3(self, intance, time):
+		self.ids.hora_R3.text = str(time)
+
+	def cancel_date_R3(self, instance, value):
+		self.ids.fecha_R3.text = "-"
+
+	def cancel_time_R3(self, instance, value):
+		self.ids.hora_R3.text = "-"
+
+	def save_date_R4(self,instance, value, date_range):
+		self.ids.fecha_R4.text = str(value)
+
+	def save_time_R4(self, intance, time):
+		self.ids.hora_R4.text = str(time)
+
+	def cancel_date_R4(self, instance, value):
+		self.ids.fecha_R4.text = "-"
+
+	def cancel_time_R4(self, instance, value):
+		self.ids.hora_R4.text = "-"
+
+	def save_date_R5(self,instance, value, date_range):
+		self.ids.fecha_R5.text = str(value)
+
+	def save_time_R5(self, intance, time):
+		self.ids.hora_R5.text = str(time)
+
+	def cancel_date_R5(self, instance, value):
+		self.ids.fecha_R5.text = "-"
+
+	def cancel_time_R5(self, instance, value):
+		self.ids.hora_R5.text = "-"
+
+
+	def show_date_picker_R1(self):
 		picker = MDDatePicker()
-		picker.bind(on_save=self.save_date, on_cancel=self.cancel_date)
+		picker.bind(on_save=self.save_date_R1, on_cancel=self.cancel_date_R1)
 		picker.open()
 
-	def show_time_picker(self):
+	def show_time_picker_R1(self):
 		time_picker = MDTimePicker()
-		time_picker.bind(time=self.save_time, on_cancel=self.cancel_time)
+		time_picker.bind(time=self.save_time_R1, on_cancel=self.cancel_time_R1)
 		time_picker.open()
+		
+	def show_date_picker_R2(self):
+		picker = MDDatePicker()
+		picker.bind(on_save=self.save_date_R2, on_cancel=self.cancel_date_R2)
+		picker.open()
+
+	def show_time_picker_R2(self):
+		time_picker = MDTimePicker()
+		time_picker.bind(time=self.save_time_R2, on_cancel=self.cancel_time_R2)
+		time_picker.open()
+		
+	def show_date_picker_R3(self):
+		picker = MDDatePicker()
+		picker.bind(on_save=self.save_date_R3, on_cancel=self.cancel_date_R3)
+		picker.open()
+
+	def show_time_picker_R3(self):
+		time_picker = MDTimePicker()
+		time_picker.bind(time=self.save_time_R3, on_cancel=self.cancel_time_R3)
+		time_picker.open()
+
+	def show_date_picker_R4(self):
+		picker = MDDatePicker()
+		picker.bind(on_save=self.save_date_R4, on_cancel=self.cancel_date_R4)
+		picker.open()
+
+	def show_time_picker_R4(self):
+		time_picker = MDTimePicker()
+		time_picker.bind(time=self.save_time_R4, on_cancel=self.cancel_time_R4)
+		time_picker.open()
+
+	def show_date_picker_R5(self):
+		picker = MDDatePicker()
+		picker.bind(on_save=self.save_date_R5, on_cancel=self.cancel_date_R5)
+		picker.open()
+
+	def show_time_picker_R5(self):
+		time_picker = MDTimePicker()
+		time_picker.bind(time=self.save_time_R5, on_cancel=self.cancel_time_R5)
+		time_picker.open()
+		
+	def borrar_r(self):
+		self.ids.fecha_R1.text = "-"
+		self.ids.hora_R1.text = "-"
+		self.ids.fecha_R2.text = "-"
+		self.ids.hora_R2.text = "-"
+		self.ids.fecha_R3.text = "-"
+		self.ids.hora_R3.text = "-"
+		self.ids.fecha_R4.text = "-"
+		self.ids.hora_R4.text = "-"
+		self.ids.fecha_R5.text = "-"
+		self.ids.hora_R5.text = "-"
 
 
 class WindowManager(ScreenManager):
