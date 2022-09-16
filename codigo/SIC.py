@@ -6,7 +6,7 @@ from kivy.metrics import dp
 from kivy.uix.floatlayout import FloatLayout
 from kivymd.uix.pickers import MDDatePicker, MDTimePicker
 import webbrowser
-
+from kivymd.uix.menu import MDDropdownMenu
 
 
 KV = """
@@ -271,21 +271,61 @@ KV = """
 
 <etapas>:
 	name: "etapas"
+    MDBoxLayout:
+		size: 1, 1
+		orientation: "vertical"
+		md_bg_color: 0.85, 0.8, 0.72, 1
+		FloatLayout:
+			id: EdicionClayout
+			padding: 5
 
-	MDLabel:
-		markup: True
-		text: "[i]Pantalla en progreso[/i]"
-		font_size: 16
-		pos_hint: {"center_x": 0.5, "center_y": 0.95}
+            MDIconButton:
+                id: botonVolver
+                icon: "arrow-left-bold"
+                size_hint: None, None
+                pos_hint: {"center_x": 0.05, "center_y": 0.95}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release: app.change_screen("Pantalla Principal")
 
-	MDRoundFlatButton:
-		id: boton100000
-		text: "[color=#315582][b]Volver pantalla principal[/b][/color]"
-		size_hint: None, None
-		width: 100
-		pos_hint: {"center_x": 0.5, "center_y": 0.5}
-		md_bg_color: 0.93, 0.69, 0.63, 0.2
-		on_release: app.change_screen("Pantalla Principal")
+            MDRoundFlatButton:
+                id: botonBuscar
+                markup: True
+                text: "[color=#315582][b]Buscar[/b][/color]"
+                size_hint: None, None
+                width: 100
+                pos_hint: {"center_x": 0.05, "center_y": 0.85}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+
+
+            Image:
+                source: "logo.jpeg"
+                size_hint : None, None
+                pos_hint: {"center_x": 0.5, "center_y": 0.93}
+
+            MDRoundFlatButton:
+                id: botonUsuario
+                markup: True
+                text: "[color=#315582][b]Usuario[/b][/color]"
+                size_hint: None, None
+                width: 100
+                pos_hint: {"center_x": .95, "center_y": 0.95}
+                md_bg_color: 0.85, 0.8, 0.72, 0
+
+
+            MDRoundFlatButton:
+        		id: botonLlamarEtapas
+        		text: "[color=#315582][b]Seleccione una Etapa[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: app.dropdown()
+
+            AnchorLayout:
+                id: data_layout2
+                pos_hint: {"center_x": .5, "center_y": .3}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+
 
 <calendario>:
 	name: "calendario"
@@ -1189,6 +1229,12 @@ KV = """
                 pos_hint: {"center_x": .5, "center_y": .65}
                 font_size: 16
 
+            MDCheckbox:
+                id: CheckEtapaInicialEC4
+                pos_hint: {"center_x": .35, "center_y": .65}
+                size_hint: None, None
+                height: 50
+                width: 50
 
 
             MDLabel:
@@ -1213,6 +1259,12 @@ KV = """
                 pos_hint: {"center_x": .5, "center_y": .43}
                 font_size: 16
 
+            MDCheckbox:
+                id: CheckEtapaIntermediaEC4
+                pos_hint: {"center_x": .35, "center_y": .43}
+                size_hint: None, None
+                height: 50
+                width: 50
 
 
             MDLabel:
@@ -1237,7 +1289,12 @@ KV = """
                 pos_hint: {"center_x": .5, "center_y": .25}
                 font_size: 16
 
-
+            MDCheckbox:
+                id: CheckEtapaFinalEC4
+                pos_hint: {"center_x": .35, "center_y": .25}
+                size_hint: None, None
+                height: 50
+                width: 50
 
 
             MDLabel:
@@ -1519,6 +1576,7 @@ WindowManager:
     calendario:
 
     etapas:
+        id: data_scr2
 
     Etapa2:
 
@@ -1623,11 +1681,144 @@ class SIC(MDApp):
         super().__init__(**kwargs)
         self.data_tableC = None
         self.data_tables1= None
+        self.data_tables2 = None
+        self.data_tables3 = None
+        self.data_tables4 = None
+        self.listaEtapas = None
+        self.menu = None
 
     def build(self):
         self.theme_cls.theme_style= "Light"
         self.theme_cls.primary_palette = "BlueGray"
         return Builder.load_string(KV)
+
+    def dropdown (self):
+        self.listaEtapas = [
+            {
+                "viewclass" : "OneLineListItem",
+                "text" : "Etapa 2",
+                "on_release" : lambda x= "Etapa 2": self.add_datatableE2()
+
+            },
+            {
+                "viewclass" : "TwoLineListItem",
+                "text" : "Etapa 3",
+                "on_release" : lambda x="Etapa 3": self.add_datatable3()
+            },
+            {
+                "viewclass" : "OneLineListItem",
+                "text" : "Etapa 4",
+                "on_release" : lambda x= "Etapa 4": self.add_datatable4()
+
+            },
+
+        ]
+
+        self.menu = MDDropdownMenu(
+            caller = self.root.ids.data_scr2.ids.botonLlamarEtapas,
+            items = self.listaEtapas,
+            width_mult = 4,
+        )
+        self.menu.open()
+
+    def add_datatableE2(self):
+        self.data_tables2 = MDDataTable(
+            size_hint=(0.8, 0.5),
+            pos_hint=(0.5, 0.4),
+            background_color_header="#D8CCB7",
+            use_pagination=True,
+            check=True,
+            column_data=[
+                ("No.", dp(30)),
+                ("Tipo", dp(30)),
+                ("Fecha de Inicio", dp(30)),
+                ("Motivo", dp(30)),
+                ("Etapa", dp (30)),
+            ],
+            row_data=[
+                (
+                    "1",
+                    "Denuncia",
+                    "1984-11-09",
+                    "Choque",
+                    "Etapa 2",
+                ),
+                (
+                    "2",
+                    "Divorcio",
+                    "2002-04-18",
+                    "Disputa",
+                    "Etapa 2",
+                ),
+            ]
+        )
+        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables2)
+
+    def add_datatable3(self):
+        self.data_tables3 = MDDataTable(
+            size_hint=(0.8, 0.5),
+            pos_hint=(0.5, 0.4),
+            background_color_header="#D8CCB7",
+            use_pagination=True,
+            check=True,
+            column_data=[
+                ("No.", dp(30)),
+                ("Tipo", dp(30)),
+                ("Fecha de Inicio", dp(30)),
+                ("Motivo", dp(30)),
+                ("Etapa", dp (30)),
+            ],
+            row_data=[
+                (
+                    "1",
+                    "Denuncia",
+                    "1984-11-09",
+                    "Choque",
+                    "Etapa 3",
+                ),
+                (
+                    "2",
+                    "Divorcio",
+                    "2002-04-18",
+                    "Disputa",
+                    "Etapa 3",
+                ),
+            ]
+        )
+        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables3)
+
+    def add_datatable4(self):
+        self.data_tables4 = MDDataTable(
+            size_hint=(0.8, 0.5),
+            pos_hint=(0.5, 0.4),
+            background_color_header="#D8CCB7",
+            use_pagination=True,
+            check=True,
+            column_data=[
+                ("No.", dp(30)),
+                ("Tipo", dp(30)),
+                ("Fecha de Inicio", dp(30)),
+                ("Motivo", dp(30)),
+                ("Etapa", dp (30)),
+            ],
+            row_data=[
+                (
+                    "1",
+                    "Denuncia",
+                    "1984-11-09",
+                    "Choque",
+                    "Etapa 4",
+                ),
+                (
+                    "2",
+                    "Divorcio",
+                    "2002-04-18",
+                    "Disputa",
+                    "Etapa 4",
+                ),
+            ]
+        )
+        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables4)
 
     def add_datatable1(self):
         self.data_tables1 = MDDataTable(
