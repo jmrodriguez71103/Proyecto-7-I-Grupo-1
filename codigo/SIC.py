@@ -152,7 +152,7 @@ KV = """
 			MDRoundFlatButton:
 				id: botonCalendario
 				markup: True
-				text: "[color=#315582][b]Calendario[/b][/color]"
+				text: "[color=#315582][b]Reuniones[/b][/color]"
 				font_size: 20
 				size_hint: .2, None
 				pos_hint: {"center_x": 0.5, "center_y": 0.25}
@@ -376,7 +376,7 @@ KV = """
         		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.65, "center_y": 0.5}
+        		pos_hint: {"center_x": 0.45, "center_y": 0.5}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R1()
         	MDRaisedButton:
@@ -384,31 +384,40 @@ KV = """
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.85, "center_y": 0.5}
+        		pos_hint: {"center_x": 0.65, "center_y": 0.5}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R1()
         	MDLabel:
-        		id: R1
+        		id: r
                 markup:True
         		text: "[color=#315582][b]Reuniones[/b][/color]"
                 font_size: 30
-        		pos_hint: {"center_x": 0.92, "center_y": 0.75}
+        		pos_hint: {"center_x": 0.93, "center_y": 0.75}
         	MDLabel:
         		id: fecha_R1
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.35, "center_y": 0.5}
+        		pos_hint: {"center_x": 0.1, "center_y": 0.5}
         	MDLabel:
         		id: hora_R1
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        		pos_hint: {"center_x": 0.3, "center_y": 0.5}
+        	MDRaisedButton:
+        		id: borrar_R1
+        		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.5}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.borrar_R1()
+
         	MDRaisedButton:
         		id: abrir_calendario_R2
         		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.65, "center_y": 0.4}
+        		pos_hint: {"center_x": 0.45, "center_y": 0.4}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R2()
         	MDRaisedButton:
@@ -416,25 +425,34 @@ KV = """
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.85, "center_y": 0.4}
+        		pos_hint: {"center_x": 0.65, "center_y": 0.4}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R2()
         	MDLabel:
         		id: fecha_R2
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.35, "center_y": 0.4}
+        		pos_hint: {"center_x": 0.1, "center_y": 0.4}
         	MDLabel:
         		id: hora_R2
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        		pos_hint: {"center_x": 0.3, "center_y": 0.4}
+        	MDRaisedButton:
+        		id: borrar_R2
+        		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.4}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.borrar_R2()
+
         	MDRaisedButton:
         		id: abrir_calendario_R3
         		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.65, "center_y": 0.3}
+        		pos_hint: {"center_x": 0.45, "center_y": 0.3}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R3()
         	MDRaisedButton:
@@ -442,25 +460,34 @@ KV = """
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.85, "center_y": 0.3}
+        		pos_hint: {"center_x": 0.65, "center_y": 0.3}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R3()
         	MDLabel:
         		id: fecha_R3
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.35, "center_y": 0.3}
+        		pos_hint: {"center_x": 0.1, "center_y": 0.3}
         	MDLabel:
         		id: hora_R3
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        		pos_hint: {"center_x": 0.3, "center_y": 0.3}
+        	MDRaisedButton:
+        		id: borrar_R3
+        		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.3}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.borrar_R3()
+
         	MDRaisedButton:
         		id: abrir_calendario_R4
         		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.65, "center_y": 0.2}
+        		pos_hint: {"center_x": 0.45, "center_y": 0.2}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R4()
         	MDRaisedButton:
@@ -468,25 +495,34 @@ KV = """
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.85, "center_y": 0.2}
+        		pos_hint: {"center_x": 0.65, "center_y": 0.2}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R4()
         	MDLabel:
         		id: fecha_R4
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.35, "center_y": 0.2}
+        		pos_hint: {"center_x": 0.1, "center_y": 0.2}
         	MDLabel:
         		id: hora_R4
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.5, "center_y": 0.2}
+        		pos_hint: {"center_x": 0.3, "center_y": 0.2}
+        	MDRaisedButton:
+        		id: borrar_R4
+        		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.2}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.borrar_R4()
+
         	MDRaisedButton:
         		id: abrir_calendario_R5
         		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.65, "center_y": 0.1}
+        		pos_hint: {"center_x": 0.45, "center_y": 0.1}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R5()
         	MDRaisedButton:
@@ -494,20 +530,28 @@ KV = """
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
         		size_hint: None, None
         		width: 100
-        		pos_hint: {"center_x": 0.85, "center_y": 0.1}
+        		pos_hint: {"center_x": 0.65, "center_y": 0.1}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R5()
         	MDLabel:
         		id: fecha_R5
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.35, "center_y": 0.1}
+        		pos_hint: {"center_x": 0.1, "center_y": 0.1}
         	MDLabel:
         		id: hora_R5
         		text: "-"
         		size_hint: None, None
-        		pos_hint: {"center_x": 0.5, "center_y": 0.1}
-        		
+        		pos_hint: {"center_x": 0.3, "center_y": 0.1}
+        	MDRaisedButton:
+        		id: borrar_R5
+        		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
+        		size_hint: None, None
+        		width: 100
+        		pos_hint: {"center_x": 0.85, "center_y": 0.1}
+        		md_bg_color: 0.93, 0.69, 0.63, 0.2
+        		on_release: root.borrar_R5()
+
         	MDRoundFlatButton:
 		        id: boton_borrar
 		        markup: True
@@ -517,6 +561,7 @@ KV = """
 		        pos_hint: {"center_x": .95, "center_y": 0.65}
 		        md_bg_color: 0.85, 0.8, 0.72, 0
 		        on_press: root.borrar_r()
+
 
 
 
@@ -1870,17 +1915,32 @@ class calendario(Screen):
 		time_picker.bind(time=self.save_time_R5, on_cancel=self.cancel_time_R5)
 		time_picker.open()
 		
-	def borrar_r(self):
+	def borrar_R1(self):
 		self.ids.fecha_R1.text = "-"
 		self.ids.hora_R1.text = "-"
+
+	def borrar_R2(self):
 		self.ids.fecha_R2.text = "-"
 		self.ids.hora_R2.text = "-"
+
+	def borrar_R3(self):
 		self.ids.fecha_R3.text = "-"
 		self.ids.hora_R3.text = "-"
+
+	def borrar_R4(self):
 		self.ids.fecha_R4.text = "-"
 		self.ids.hora_R4.text = "-"
+
+	def borrar_R5(self):
 		self.ids.fecha_R5.text = "-"
 		self.ids.hora_R5.text = "-"
+
+	def borrar_r(self):
+		self.borrar_R1()
+		self.borrar_R2()
+		self.borrar_R3()
+		self.borrar_R4()
+		self.borrar_R5()
 
 
 class WindowManager(ScreenManager):
