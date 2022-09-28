@@ -63,11 +63,11 @@ KV = """
     			size_hint: None, None
     			width: 100
     			pos_hint: {"center_x": 0.5}
-    			on_release:
-                    app.change_screen("Pantalla Principal")
+	    		on_release: app.change_screen("Pantalla Principal")
 
 <pantallaPrincipal>:
 	name: "Pantalla Principal"
+    id: pp
 
 
 	MDBoxLayout:
@@ -86,13 +86,14 @@ KV = """
 				pos_hint: {"center_x": 0.5, "center_y": 0.93}
 
 			MDRoundFlatButton:
-				id: botonUsuario
+				id: botonUsuario_pp
 				markup: True
 				text: "[color=#315582][b]Usuario[/b][/color]"
 				size_hint: None, None
 				width: 100
 				pos_hint: {"center_x": .95, "center_y": 0.95}
 				md_bg_color: 0.85, 0.8, 0.72, 0
+				on_release: app.dropdown_user()
 
 			MDLabel:
 				markup: True
@@ -185,13 +186,14 @@ KV = """
     			pos_hint: {"center_x": 0.5, "center_y": 0.93}
 
     		MDRoundFlatButton:
-    			id: botonUsuario
+    			id: botonUsuario_c
     			markup: True
     			text: "[color=#315582][b]Usuario[/b][/color]"
     			size_hint: None, None
     			width: 100
     			pos_hint: {"center_x": .95, "center_y": 0.95}
     			md_bg_color: 0.85, 0.8, 0.72, 0
+                on_release: app.dropdown_user()
 
     		MDLabel:
     			markup: True
@@ -304,13 +306,14 @@ KV = """
                 pos_hint: {"center_x": 0.5, "center_y": 0.93}
 
             MDRoundFlatButton:
-                id: botonUsuario
+                id: botonUsuario_e
                 markup: True
                 text: "[color=#315582][b]Usuario[/b][/color]"
                 size_hint: None, None
                 width: 100
                 pos_hint: {"center_x": .95, "center_y": 0.95}
                 md_bg_color: 0.85, 0.8, 0.72, 0
+                on_release: app.dropdown_user()
 
 
             MDRoundFlatButton:
@@ -362,13 +365,14 @@ KV = """
                 pos_hint: {"center_x": 0.5, "center_y": 0.93}
 
             MDRoundFlatButton:
-                id: botonUsuario
+                id: botonUsuario_r
                 markup: True
                 text: "[color=#315582][b]Usuario[/b][/color]"
                 size_hint: None, None
                 width: 100
                 pos_hint: {"center_x": .95, "center_y": 0.95}
                 md_bg_color: 0.85, 0.8, 0.72, 0
+                on_release: app.dropdown_user()
 
 
         	MDRaisedButton:
@@ -1727,8 +1731,10 @@ WindowManager:
     LoginWindow:
 
     pantallaPrincipal:
+        id: pp
 
     calendario:
+        id: r
 
     etapas:
         id: data_scr2
@@ -1960,6 +1966,14 @@ class SIC(MDApp):
 
     Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 	
+
+    def abrirPJN (instance):
+        webbrowser.open('https://www.pjn.gov.ar/')
+	
+    def abrirMEV (instance):
+        webbrowser.open('https://mev.scba.gov.ar/loguin.asp')
+
+
     def build(self):
         self.theme_cls.theme_style= "Light"
         self.theme_cls.primary_palette = "BlueGray"
@@ -1992,7 +2006,25 @@ class SIC(MDApp):
             items = self.listaEtapas,
             width_mult = 4,
         )
-        self.menu.open()
+        self.menu.open() 
+
+    def dropdown_user(self):
+        self.menu_user = [
+            {
+            "viewclass": "OneLineListItem",
+            "text": "Cerrar Sesión",
+            "on_release": lambda x= "Cerrar Sesión": self.login_pp()
+            },
+        ]
+        self.menu = MDDropdownMenu(
+            caller = self.root.ids.pp.ids.botonUsuario_pp and self.root.ids.r.ids.botonUsuario_r and self.root.ids.data_scr.ids.botonUsuario_c and self.root.ids.data_scr2.ids.botonUsuario_e,
+            items = self.menu_user,
+            width_mult = 4
+        )
+        self.menu.open()  
+
+    def login_pp(self):
+        self.change_screen("main")
 
     def add_datatableE2(self):
         self.data_tables2 = MDDataTable(
