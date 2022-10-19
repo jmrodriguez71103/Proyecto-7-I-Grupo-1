@@ -52,6 +52,7 @@ KV = """
     			id: psw
     			hint_text: "Contraseña"
     			icon_right: "lock"
+			#password: True
     			size_hint: None, None
     			width: 200
     			font_size: 16
