@@ -52,7 +52,7 @@ KV = """
     			id: psw
     			hint_text: "Contraseña"
     			icon_right: "lock"
-			#password: True
+    			password: True
     			size_hint: None, None
     			width: 200
     			font_size: 16
@@ -64,12 +64,11 @@ KV = """
     			size_hint: None, None
     			width: 100
     			pos_hint: {"center_x": 0.5}
-	    		on_release: app.change_screen("Pantalla Principal")
+	    		on_release: app.change_screen("Pantalla Principal Admin")
 
-<pantallaPrincipal>:
-	name: "Pantalla Principal"
+<pantallaPrincipalAdmin>:
+	name: "Pantalla Principal Admin"
     id: pp
-
 
 	MDBoxLayout:
 		size: 1, 1
@@ -79,7 +78,107 @@ KV = """
 			id: flayout
 			padding: 5
 
+            MDRoundFlatButton:
+                id: botonregistro
+                markup: True
+                text: "[color=#315582][b]Registro de Usuario[/b][/color]"
+                size_hint: None, None
+                width: 100
+                pos_hint: {"center_x": 0.1, "center_y": 0.95}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release: app.change_screen("registro")
 
+			Image:
+				source: "logo.jpeg"
+				size_hint : None, None
+				pos_hint: {"center_x": 0.5, "center_y": 0.93}
+
+			MDRoundFlatButton:
+				id: botonUsuario_ppA
+				markup: True
+				text: "[color=#315582][b]Usuario[/b][/color]"
+				size_hint: None, None
+				width: 100
+				pos_hint: {"center_x": .95, "center_y": 0.95}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+				on_release: app.dropdown_user()
+
+			MDLabel:
+				markup: True
+				text: "[color=#315582][i]Sistema Integral[/i][/color]"
+				font_size: 26
+				pos_hint: {"center_x": 0.93, "center_y": 0.80}
+
+			MDLabel:
+				markup: True
+				text: "[color=#315582][i]de clientes[/i][/color]"
+				font_size: 26
+				pos_hint: {"center_x": 0.955, "center_y": 0.75}
+
+
+			MDRoundFlatButton:
+				markup: True
+				id: botonClientes
+				text: "[color=#315582][b]Clientes[/b][/color]"
+				font_size: 20
+				size_hint: .2, None
+				pos_hint: {"center_x": 0.5, "center_y": 0.65}
+				on_release:
+                    app.change_screen("Clientes")
+                    app.add_datatable()
+				md_bg_color: 0.93, 0.69, 0.63, 0.2
+
+			MDRoundFlatButton:
+				id: botonEtapas
+				markup: True
+				text: "[color=#315582][b]Etapas[/b][/color]"
+				font_size: 20
+				size_hint: .2, None
+				pos_hint: {"center_x": 0.5, "center_y": 0.55}
+				on_release: app.change_screen("etapas")
+				md_bg_color: 0.93, 0.69, 0.63, 0.2
+
+			MDRoundFlatButton:
+				id: botonPJN
+				markup: True
+				text: "[color=#315582][b]Poder Judicial[/b][/color]"
+				font_size: 20
+				size_hint: .2, None
+				pos_hint: {"center_x": 0.5, "center_y": 0.45}
+				md_bg_color: 0.93, 0.69, 0.63, 0.2
+				on_release: app.abrirPJN()
+
+			MDRoundFlatButton:
+				id: botonMEV
+				markup: True
+				text: "[color=#315582][b]MEV[/b][/color]"
+				font_size: 20
+				size_hint: .2, None
+				pos_hint: {"center_x": 0.5, "center_y": 0.35}
+				md_bg_color: 0.93, 0.69, 0.63, 0.2
+				on_release: app.abrirMEV()
+
+			MDRoundFlatButton:
+				id: botonCalendario
+				markup: True
+				text: "[color=#315582][b]Reuniones[/b][/color]"
+				font_size: 20
+				size_hint: .2, None
+				pos_hint: {"center_x": 0.5, "center_y": 0.25}
+				md_bg_color: 0.93, 0.69, 0.63, 0.2
+				on_release: app.change_screen("calendario")
+
+
+<pantallaPrincipal>:
+	name: "Pantalla Principal"
+
+	MDBoxLayout:
+		size: 1, 1
+		orientation: "vertical"
+		md_bg_color: 0.85, 0.8, 0.72, 1
+		FloatLayout:
+			id: flayout
+			padding: 5
 
 			Image:
 				source: "logo.jpeg"
@@ -93,7 +192,7 @@ KV = """
 				size_hint: None, None
 				width: 100
 				pos_hint: {"center_x": .95, "center_y": 0.95}
-				md_bg_color: 0.85, 0.8, 0.72, 0
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
 				on_release: app.dropdown_user()
 
 			MDLabel:
@@ -161,14 +260,6 @@ KV = """
 				md_bg_color: 0.93, 0.69, 0.63, 0.2
 				on_release: app.change_screen("calendario")
 
-			MDRoundFlatButton:
-				id: botonBuscar
-				markup: True
-				text: "[color=#315582][b]Buscar[/b][/color]"
-				size_hint: None, None
-				width: 100
-				pos_hint: {"center_x": 0.05, "center_y": 0.95}
-				md_bg_color: 0.93, 0.69, 0.63, 0.2
 
 
 
@@ -258,16 +349,6 @@ KV = """
     			pos_hint: {"center_x": 0.87, "center_y": 0.57}
     			md_bg_color: 0.93, 0.69, 0.63, 0.2
 
-
-    		MDRoundFlatButton:
-    			id: botonBuscar
-    			markup: True
-    			text: "[color=#315582][b]Buscar[/b][/color]"
-    			size_hint: None, None
-    			width: 100
-    			pos_hint: {"center_x": 0.05, "center_y": 0.95}
-    			md_bg_color: 0.93, 0.69, 0.63, 0.2
-
             AnchorLayout:
                 id: data_layout
                 pos_hint: {"center_x": .5, "center_y": .3}
@@ -290,16 +371,6 @@ KV = """
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("Pantalla Principal")
-
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
 
             Image:
                 source: "logo.jpeg"
@@ -350,16 +421,6 @@ KV = """
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("Pantalla Principal")
 
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
-
             Image:
                 source: "logo.jpeg"
                 size_hint : None, None
@@ -375,7 +436,6 @@ KV = """
                 md_bg_color: 0.85, 0.8, 0.72, 0
                 on_release: app.dropdown_user()
 
-
         	MDRaisedButton:
         		id: abrir_calendario_R1
         		text: "[color=#315582][b]Seleccionar Fecha[/b][/color]"
@@ -384,6 +444,7 @@ KV = """
         		pos_hint: {"center_x": 0.45, "center_y": 0.5}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R1()
+
         	MDRaisedButton:
         		id: abrir_reloj_R1
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
@@ -392,22 +453,26 @@ KV = """
         		pos_hint: {"center_x": 0.65, "center_y": 0.5}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R1()
+
         	MDLabel:
         		id: r
                 markup:True
         		text: "[color=#315582][b]Reuniones[/b][/color]"
                 font_size: 30
         		pos_hint: {"center_x": 0.93, "center_y": 0.75}
+
         	MDLabel:
         		id: fecha_R1
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.1, "center_y": 0.5}
+
         	MDLabel:
         		id: hora_R1
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.3, "center_y": 0.5}
+
         	MDRaisedButton:
         		id: borrar_R1
         		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
@@ -425,6 +490,7 @@ KV = """
         		pos_hint: {"center_x": 0.45, "center_y": 0.4}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R2()
+
         	MDRaisedButton:
         		id: abrir_reloj_R2
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
@@ -433,16 +499,19 @@ KV = """
         		pos_hint: {"center_x": 0.65, "center_y": 0.4}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R2()
+
         	MDLabel:
         		id: fecha_R2
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.1, "center_y": 0.4}
+
         	MDLabel:
         		id: hora_R2
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.3, "center_y": 0.4}
+
         	MDRaisedButton:
         		id: borrar_R2
         		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
@@ -460,6 +529,7 @@ KV = """
         		pos_hint: {"center_x": 0.45, "center_y": 0.3}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R3()
+
         	MDRaisedButton:
         		id: abrir_reloj_R3
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
@@ -468,16 +538,19 @@ KV = """
         		pos_hint: {"center_x": 0.65, "center_y": 0.3}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R3()
+
         	MDLabel:
         		id: fecha_R3
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.1, "center_y": 0.3}
+
         	MDLabel:
         		id: hora_R3
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.3, "center_y": 0.3}
+
         	MDRaisedButton:
         		id: borrar_R3
         		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
@@ -495,6 +568,7 @@ KV = """
         		pos_hint: {"center_x": 0.45, "center_y": 0.2}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R4()
+
         	MDRaisedButton:
         		id: abrir_reloj_R4
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
@@ -503,16 +577,19 @@ KV = """
         		pos_hint: {"center_x": 0.65, "center_y": 0.2}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R4()
+
         	MDLabel:
         		id: fecha_R4
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.1, "center_y": 0.2}
+
         	MDLabel:
         		id: hora_R4
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.3, "center_y": 0.2}
+
         	MDRaisedButton:
         		id: borrar_R4
         		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
@@ -530,6 +607,7 @@ KV = """
         		pos_hint: {"center_x": 0.45, "center_y": 0.1}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_date_picker_R5()
+
         	MDRaisedButton:
         		id: abrir_reloj_R5
         		text: "[color=#315582][b]Seleccionar Horario[/b][/color]"
@@ -538,16 +616,19 @@ KV = """
         		pos_hint: {"center_x": 0.65, "center_y": 0.1}
         		md_bg_color: 0.93, 0.69, 0.63, 0.2
         		on_release: root.show_time_picker_R5()
+
         	MDLabel:
         		id: fecha_R5
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.1, "center_y": 0.1}
+
         	MDLabel:
         		id: hora_R5
         		text: "-"
         		size_hint: None, None
         		pos_hint: {"center_x": 0.3, "center_y": 0.1}
+
         	MDRaisedButton:
         		id: borrar_R5
         		text: "[color=#315582][b]Borrar Reunión[/b][/color]"
@@ -581,9 +662,6 @@ KV = """
 			id: MenuClayout
 			padding: 5
 
-
-
-
             MDIconButton:
                 id: botonVolver
                 icon: "arrow-left-bold"
@@ -591,16 +669,6 @@ KV = """
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("Clientes")
-
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
 
             Image:
                 source: "logo.jpeg"
@@ -665,16 +733,6 @@ KV = """
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("Clientes")
-
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
 
             Image:
                 source: "logo.jpeg"
@@ -805,16 +863,6 @@ KV = """
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("menucliente")
 
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
-
             Image:
                 source: "logo.jpeg"
                 size_hint : None, None
@@ -894,16 +942,6 @@ KV = """
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("DatosCasos")
-
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
 
             Image:
                 source: "logo.jpeg"
@@ -1011,16 +1049,6 @@ KV = """
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("DatosCasos")
 
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
-
             Image:
                 source: "logo.jpeg"
                 size_hint : None, None
@@ -1100,16 +1128,6 @@ KV = """
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("MenuCaso")
-
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
 
             Image:
                 source: "logo.jpeg"
@@ -1200,16 +1218,6 @@ KV = """
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("MenuCaso")
-
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
 
             Image:
                 source: "logo.jpeg"
@@ -1351,16 +1359,6 @@ KV = """
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("MenuCaso")
 
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
-
             Image:
                 source: "logo.jpeg"
                 size_hint : None, None
@@ -1491,16 +1489,6 @@ KV = """
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("MenuCaso")
 
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
-
             Image:
                 source: "logo.jpeg"
                 size_hint : None, None
@@ -1606,16 +1594,6 @@ KV = """
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release: app.change_screen("menucliente")
-
-            MDRoundFlatButton:
-                id: botonBuscar
-                markup: True
-                text: "[color=#315582][b]Buscar[/b][/color]"
-                size_hint: None, None
-                width: 100
-                pos_hint: {"center_x": 0.05, "center_y": 0.85}
-                md_bg_color: 0.93, 0.69, 0.63, 0.2
-
 
             Image:
                 source: "logo.jpeg"
@@ -1728,17 +1706,111 @@ KV = """
                 pos_hint: {"center_x": 0.5, "center_y": 0.05}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
 
+<RegistroUsuario>
+    name:"registro"
+    MDBoxLayout:
+		size: 1, 1
+		orientation: "vertical"
+		md_bg_color: 0.85, 0.8, 0.72, 1
+		FloatLayout:
+			id: RegistroClayout
+			padding: 5
+
+            MDIconButton:
+                id: botonVolver
+                icon: "arrow-left-bold"
+                size_hint: None, None
+                pos_hint: {"center_x": 0.05, "center_y": 0.95}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release: app.change_screen("Pantalla Principal Admin")
+
+            Image:
+                source: "logo.jpeg"
+                size_hint : None, None
+                pos_hint: {"center_x": 0.5, "center_y": 0.93}
+
+            MDRoundFlatButton:
+                id: botonUsuario
+                markup: True
+                text: "[color=#315582][b]Usuario[/b][/color]"
+                size_hint: None, None
+                width: 100
+                pos_hint: {"center_x": .95, "center_y": 0.95}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+
+            MDLabel:
+                id:TituloR
+                markup: True
+                text: "[color=#315582][b]Registro de Usuario[/b][/color]"
+                pos_hint: {"center_x": .90, "center_y": .75}
+                font_size: 30
+
+            MDLabel:
+                id:NombreA
+                markup: True
+                text: "Nombre de Usuario"
+                pos_hint: {"center_x": .87, "center_y": .65}
+                font_size: 16
+
+            MDTextField:
+                id: InputNombreA
+                pos_hint: {"center_x": .5, "center_y": .60}
+                size_hint: None, None
+                width: 350
+
+
+            MDLabel:
+                id:DNIA
+                markup: True
+                text: "DNI"
+                pos_hint: {"center_x": .87, "center_y": .55}
+                font_size: 16
+
+            MDTextField:
+                id: InputDNIA
+                pos_hint: {"center_x": .5, "center_y": .50}
+                size_hint: None, None
+                width: 350
+
+
+            MDLabel:
+                id:contraseñaA
+                markup: True
+                text: "Contraseña"
+                pos_hint: {"center_x": .87, "center_y": .45}
+                font_size: 16
+
+            MDTextField:
+                id: InputContraseñaA
+                pos_hint: {"center_x": .5, "center_y": .40}
+                size_hint: None, None
+                width: 350
+
+            MDRoundFlatButton:
+                id: botonGuardarDatosEC1
+                markup: True
+                text: "[color=#315582][b]Guardar Datos[/b][/color]"
+                size_hint: None, None
+                width: 100
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
+
 WindowManager:
     LoginWindow:
 
     pantallaPrincipal:
         id: pp
 
+    pantallaPrincipalAdmin:
+        id: ppA
+
     calendario:
         id: r
 
     etapas:
         id: data_scr2
+
+    RegistroUsuario:
 
     Etapa2:
 
@@ -1763,12 +1835,15 @@ WindowManager:
 
     ClientWindow:
         id: data_scr
+    
 """
 
 
 class LoginWindow(Screen):
     pass
 
+class RegistroUsuario(Screen):
+    pass
 
 class ClientWindow(Screen):
     pass
@@ -1792,6 +1867,9 @@ class NuevoCaso(Screen):
     pass
 
 class pantallaPrincipal(Screen):
+    pass
+
+class pantallaPrincipalAdmin(Screen):
     pass
 
 class etapas(Screen):
@@ -2018,7 +2096,7 @@ class SIC(MDApp):
             },
         ]
         self.menu = MDDropdownMenu(
-            caller = self.root.ids.pp.ids.botonUsuario_pp and self.root.ids.r.ids.botonUsuario_r and self.root.ids.data_scr.ids.botonUsuario_c and self.root.ids.data_scr2.ids.botonUsuario_e,
+            caller = self.root.ids.ppA.ids.botonUsuario_ppA and self.root.ids.pp.ids.botonUsuario_pp and self.root.ids.r.ids.botonUsuario_r and self.root.ids.data_scr.ids.botonUsuario_c and self.root.ids.data_scr2.ids.botonUsuario_e,
             items = self.menu_user,
             width_mult = 4
         )
