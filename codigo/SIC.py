@@ -746,7 +746,7 @@ KV = """
                 size_hint: None, None
                 width: 100
                 pos_hint: {"center_x": .95, "center_y": 0.95}
-                md_bg_color: 0.85, 0.8, 0.72, 0
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
 
             MDLabel:
                 id:TituloNC1
@@ -759,12 +759,12 @@ KV = """
                 id:NombreNC1
                 markup: True
                 text: "Nombre"
-                pos_hint: {"center_x": .5, "center_y": .65}
+                pos_hint: {"center_x": .87, "center_y": .65}
                 font_size: 16
 
             MDTextField:
                 id: InputNombreNC1
-                pos_hint: {"center_x": .18, "center_y": .60}
+                pos_hint: {"center_x": .5, "center_y": .60}
                 size_hint: None, None
                 width: 350
 
@@ -774,12 +774,12 @@ KV = """
                 id:ApellidoNC1
                 markup: True
                 text: "Apellido"
-                pos_hint: {"center_x": .5, "center_y": .55}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputApellidoNC1
-                pos_hint: {"center_x": .18, "center_y": .50}
+                pos_hint: {"center_x": .5, "center_y": .50}
                 size_hint: None, None
                 width: 350
 
@@ -788,12 +788,12 @@ KV = """
                 id:DNINC1
                 markup: True
                 text: "DNI"
-                pos_hint: {"center_x": .5, "center_y": .45}
+                pos_hint: {"center_x": .87, "center_y": .45}
                 font_size: 16
 
             MDTextField:
                 id: InputDNINC1
-                pos_hint: {"center_x": .18, "center_y": .40}
+                pos_hint: {"center_x": .5, "center_y": .40}
                 size_hint: None, None
                 width: 350
 
@@ -801,12 +801,12 @@ KV = """
                 id:DireccionNC1
                 markup: True
                 text: "Direccion"
-                pos_hint: {"center_x": .5, "center_y": .35}
+                pos_hint: {"center_x": .87, "center_y": .35}
                 font_size: 16
 
             MDTextField:
                 id: InputDireccionNC1
-                pos_hint: {"center_x": .18, "center_y": .30}
+                pos_hint: {"center_x": .5, "center_y": .30}
                 size_hint: None, None
                 width: 350
 
@@ -814,12 +814,12 @@ KV = """
                 id:TelefonoNC1
                 markup: True
                 text: "Telefono"
-                pos_hint: {"center_x": .5, "center_y": .25}
+                pos_hint: {"center_x": .87, "center_y": .25}
                 font_size: 16
 
             MDTextField:
                 id: InputTelefonoNC1
-                pos_hint: {"center_x": .18, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .20}
                 size_hint: None, None
                 width: 350
 
@@ -827,12 +827,12 @@ KV = """
                 id:EmailNC1
                 markup: True
                 text: "Email"
-                pos_hint: {"center_x": .5, "center_y": .15}
+                pos_hint: {"center_x": .87, "center_y": .15}
                 font_size: 16
 
             MDTextField:
                 id: InputEmailNC1
-                pos_hint: {"center_x": .18, "center_y": .10}
+                pos_hint: {"center_x": .5, "center_y": .10}
                 size_hint: None, None
                 width: 350
 
@@ -968,12 +968,12 @@ KV = """
                 id:TipoCC1
                 markup: True
                 text: "Tipo"
-                pos_hint: {"center_x": .5, "center_y": .65}
+                pos_hint: {"center_x": .87, "center_y": .65}
                 font_size: 16
 
             MDTextField:
                 id: InputTipoEC1
-                pos_hint: {"center_x": .18, "center_y": .60}
+                pos_hint: {"center_x": .5, "center_y": .60}
                 size_hint: None, None
                 width: 350
 
@@ -981,12 +981,12 @@ KV = """
                 id:FechaInicioCC1
                 markup: True
                 text: "Fecha de Inicio"
-                pos_hint: {"center_x": .5, "center_y": .55}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaInicioCC1
-                pos_hint: {"center_x": .18, "center_y": .50}
+                pos_hint: {"center_x": .5, "center_y": .50}
                 size_hint: None, None
                 helper_text:"Año-Mes-Día"
                 helper_text_mode: "persistent"
@@ -997,12 +997,12 @@ KV = """
                 id:FechaFinCC1
                 markup: True
                 text: "Fecha de Finalización"
-                pos_hint: {"center_x": .5, "center_y": .40}
+                pos_hint: {"center_x": .87, "center_y": .40}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaFinCC1
-                pos_hint: {"center_x": .18, "center_y": .35}
+                pos_hint: {"center_x": .5, "center_y": .35}
                 size_hint: None, None
                 helper_text: "Año-Mes-Día"
                 helper_text_mode: "persistent"
@@ -1013,12 +1013,12 @@ KV = """
                 id:MotivoCC1
                 markup: True
                 text: "Motivo"
-                pos_hint: {"center_x": .5, "center_y": .25}
+                pos_hint: {"center_x": .87, "center_y": .25}
                 font_size: 16
 
             MDTextField:
                 id: InputMotivoCC1
-                pos_hint: {"center_x": .18, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .20}
                 size_hint: None, None
                 width: 350
 
@@ -1155,12 +1155,12 @@ KV = """
                 id:FirmaEC2
                 markup: True
                 text: "Firma"
-                pos_hint: {"center_x": .5, "center_y": .65}
+                pos_hint: {"center_x": .87, "center_y": .65}
                 font_size: 16
 
             MDTextField:
                 id: InputFirmaEC2
-                pos_hint: {"center_x": .18, "center_y": .60}
+                pos_hint: {"center_x": .5, "center_y": .60}
                 size_hint: None, None
                 width: 350
 
@@ -1168,12 +1168,12 @@ KV = """
                 id:FechaFirmaEC2
                 markup: True
                 text: "Fecha de la Firma"
-                pos_hint: {"center_x": .5, "center_y": .55}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaFirmaEC2
-                pos_hint: {"center_x": .18, "center_y": .50}
+                pos_hint: {"center_x": .5, "center_y": .50}
                 size_hint: None, None
                 width: 350
                 helper_text:"Año-Mes-Día"
@@ -1183,12 +1183,12 @@ KV = """
                 id:LugarFirmaEC2
                 markup: True
                 text: "Lugar de la Firma"
-                pos_hint: {"center_x": .5, "center_y": .40}
+                pos_hint: {"center_x": .87, "center_y": .40}
                 font_size: 16
 
             MDTextField:
                 id: InputLugarFirmaEC2
-                pos_hint: {"center_x": .18, "center_y": .35}
+                pos_hint: {"center_x": .5, "center_y": .35}
                 size_hint: None, None
                 width: 350
 
@@ -1384,7 +1384,7 @@ KV = """
                 id:EtapaInicioEC4
                 markup: True
                 text: "Etapa Inicial"
-                pos_hint: {"center_x": .5, "center_y": .65}
+                pos_hint: {"center_x": .87, "center_y": .65}
                 font_size: 16
 
             MDCheckbox:
@@ -1414,7 +1414,7 @@ KV = """
                 id:EtapaIntermediaEC4
                 markup: True
                 text: "Etapa Intermedia"
-                pos_hint: {"center_x": .5, "center_y": .43}
+                pos_hint: {"center_x": .87, "center_y": .43}
                 font_size: 16
 
             MDCheckbox:
@@ -1444,7 +1444,7 @@ KV = """
                 id:EtapaFinalEC4
                 markup: True
                 text: "Etapa Final"
-                pos_hint: {"center_x": .5, "center_y": .25}
+                pos_hint: {"center_x": .87, "center_y": .25}
                 font_size: 16
 
             MDCheckbox:
@@ -1620,12 +1620,12 @@ KV = """
                 id:NombreEC1
                 markup: True
                 text: "Nombre"
-                pos_hint: {"center_x": .5, "center_y": .65}
+                pos_hint: {"center_x": .87, "center_y": .65}
                 font_size: 16
 
             MDTextField:
                 id: InputNombreEC1
-                pos_hint: {"center_x": .18, "center_y": .60}
+                pos_hint: {"center_x": .5, "center_y": .60}
                 size_hint: None, None
                 width: 350
 
@@ -1635,12 +1635,12 @@ KV = """
                 id:ApellidoEC1
                 markup: True
                 text: "Apellido"
-                pos_hint: {"center_x": .5, "center_y": .55}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputApellidoEC1
-                pos_hint: {"center_x": .18, "center_y": .50}
+                pos_hint: {"center_x": .5, "center_y": .50}
                 size_hint: None, None
                 width: 350
 
@@ -1649,12 +1649,12 @@ KV = """
                 id:DNIEC1
                 markup: True
                 text: "DNI"
-                pos_hint: {"center_x": .5, "center_y": .45}
+                pos_hint: {"center_x": .87, "center_y": .45}
                 font_size: 16
 
             MDTextField:
                 id: InputDNIEC1
-                pos_hint: {"center_x": .18, "center_y": .40}
+                pos_hint: {"center_x": .5, "center_y": .40}
                 size_hint: None, None
                 width: 350
 
@@ -1662,12 +1662,12 @@ KV = """
                 id:DireccionEC1
                 markup: True
                 text: "Direccion"
-                pos_hint: {"center_x": .5, "center_y": .35}
+                pos_hint: {"center_x": .87, "center_y": .35}
                 font_size: 16
 
             MDTextField:
                 id: InputDireccionEC1
-                pos_hint: {"center_x": .18, "center_y": .30}
+                pos_hint: {"center_x": .5, "center_y": .30}
                 size_hint: None, None
                 width: 350
 
@@ -1675,12 +1675,12 @@ KV = """
                 id:TelefonoEC1
                 markup: True
                 text: "Telefono"
-                pos_hint: {"center_x": .5, "center_y": .25}
+                pos_hint: {"center_x": .87, "center_y": .25}
                 font_size: 16
 
             MDTextField:
                 id: InputTelefonoEC1
-                pos_hint: {"center_x": .18, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .20}
                 size_hint: None, None
                 width: 350
 
@@ -1688,12 +1688,12 @@ KV = """
                 id:EmailEC1
                 markup: True
                 text: "Email"
-                pos_hint: {"center_x": .5, "center_y": .15}
+                pos_hint: {"center_x": .87, "center_y": .15}
                 font_size: 16
 
             MDTextField:
                 id: InputEmailEC1
-                pos_hint: {"center_x": .18, "center_y": .10}
+                pos_hint: {"center_x": .5, "center_y": .10}
                 size_hint: None, None
                 width: 350
 
