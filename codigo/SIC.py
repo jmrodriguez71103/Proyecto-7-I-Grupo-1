@@ -1371,7 +1371,7 @@ KV = """
                 size_hint: None, None
                 width: 100
                 pos_hint: {"center_x": .95, "center_y": 0.95}
-                md_bg_color: 0.85, 0.8, 0.72, 0
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
 
             MDLabel:
                 id:TituloMCC1
@@ -1399,12 +1399,12 @@ KV = """
                 id:FechaEtapaInicioEC4
                 markup: True
                 text: "Fecha de inicio de la etapa inicial"
-                pos_hint: {"center_x": .5, "center_y": .55}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaEtapaInicioEC4
-                pos_hint: {"center_x": .18, "center_y": .51}
+                pos_hint: {"center_x": .5, "center_y": .51}
                 size_hint: None, None
                 width: 350
                 helper_text:"Año-Mes-Día"
@@ -1429,12 +1429,12 @@ KV = """
                 id:FechaEtapaIntermediaEC4
                 markup: True
                 text: "Fecha de inicio de la etapa intermedia"
-                pos_hint: {"center_x": .5, "center_y": .35}
+                pos_hint: {"center_x": .87, "center_y": .35}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaEtapaIntermediaEC4
-                pos_hint: {"center_x": .18, "center_y": 31}
+                pos_hint: {"center_x": .5, "center_y": 31}
                 size_hint: None, None
                 width: 350
                 helper_text:"Año-Mes-Día"
@@ -1459,12 +1459,12 @@ KV = """
                 id:FechaEtapaFinalEC4
                 markup: True
                 text: "Fecha de inicio de la etapa Final"
-                pos_hint: {"center_x": .5, "center_y": .15}
+                pos_hint: {"center_x": .87, "center_y": .15}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaEtapaFinalEC4
-                pos_hint: {"center_x": .18, "center_y": .11}
+                pos_hint: {"center_x": .5, "center_y": .11}
                 size_hint: None, None
                 width: 350
                 helper_text:"Año-Mes-Día"
@@ -1501,7 +1501,7 @@ KV = """
                 size_hint: None, None
                 width: 100
                 pos_hint: {"center_x": .95, "center_y": 0.95}
-                md_bg_color: 0.85, 0.8, 0.72, 0
+                md_bg_color: 0.93, 0.69, 0.63, 0.2
 
             MDLabel:
                 id:TituloCC1
@@ -1514,12 +1514,12 @@ KV = """
                 id:TipoCC1
                 markup: True
                 text: "Tipo"
-                pos_hint: {"center_x": .5, "center_y": .65}
+                pos_hint: {"center_x": .87, "center_y": .65}
                 font_size: 16
 
             MDTextField:
                 id: InputTipoEC1
-                pos_hint: {"center_x": .18, "center_y": .60}
+                pos_hint: {"center_x": .5, "center_y": .60}
                 size_hint: None, None
                 width: 350
 
@@ -1527,12 +1527,12 @@ KV = """
                 id:FechaInicioCC1
                 markup: True
                 text: "Fecha de Inicio"
-                pos_hint: {"center_x": .5, "center_y": .55}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaInicioCC1
-                pos_hint: {"center_x": .18, "center_y": .50}
+                pos_hint: {"center_x": .5, "center_y": .50}
                 size_hint: None, None
                 helper_text:"Año-Mes-Día"
                 helper_text_mode: "persistent"
@@ -1543,12 +1543,12 @@ KV = """
                 id:FechaFinCC1
                 markup: True
                 text: "Fecha de Finalización"
-                pos_hint: {"center_x": .5, "center_y": .40}
+                pos_hint: {"center_x": .87, "center_y": .40}
                 font_size: 16
 
             MDTextField:
                 id: InputFechaFinCC1
-                pos_hint: {"center_x": .18, "center_y": .35}
+                pos_hint: {"center_x": .5, "center_y": .35}
                 size_hint: None, None
                 helper_text: "Año-Mes-Día"
                 helper_text_mode: "persistent"
@@ -1559,12 +1559,12 @@ KV = """
                 id:MotivoCC1
                 markup: True
                 text: "Motivo"
-                pos_hint: {"center_x": .5, "center_y": .25}
+                pos_hint: {"center_x": .87, "center_y": .25}
                 font_size: 16
 
             MDTextField:
                 id: InputMotivoCC1
-                pos_hint: {"center_x": .18, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .20}
                 size_hint: None, None
                 width: 350
 
