@@ -8,6 +8,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivymd.uix.pickers import MDDatePicker, MDTimePicker
 import webbrowser
 from kivymd.uix.menu import MDDropdownMenu
+import mysql.connector as mysql
+import pandas as pd
 
 
 KV = """
@@ -52,7 +54,6 @@ KV = """
     			id: psw
     			hint_text: "Contraseña"
     			icon_right: "lock"
-    			password: True
     			size_hint: None, None
     			width: 200
     			font_size: 16
@@ -64,7 +65,8 @@ KV = """
     			size_hint: None, None
     			width: 100
     			pos_hint: {"center_x": 0.5}
-	    		on_release: app.change_screen("Pantalla Principal Admin")
+    			on_release:
+                    app.login()
 
 <pantallaPrincipalAdmin>:
 	name: "Pantalla Principal Admin"
@@ -1797,7 +1799,7 @@ KV = """
 
 WindowManager:
     LoginWindow:
-
+        id:login
     pantallaPrincipal:
         id: pp
 
@@ -1835,7 +1837,7 @@ WindowManager:
 
     ClientWindow:
         id: data_scr
-    
+
 """
 
 
@@ -1959,7 +1961,7 @@ class calendario(Screen):
 		time_picker = MDTimePicker()
 		time_picker.bind(time=self.save_time_R1, on_cancel=self.cancel_time_R1)
 		time_picker.open()
-		
+
 	def show_date_picker_R2(self):
 		picker = MDDatePicker()
 		picker.bind(on_save=self.save_date_R2, on_cancel=self.cancel_date_R2)
@@ -1969,7 +1971,7 @@ class calendario(Screen):
 		time_picker = MDTimePicker()
 		time_picker.bind(time=self.save_time_R2, on_cancel=self.cancel_time_R2)
 		time_picker.open()
-		
+
 	def show_date_picker_R3(self):
 		picker = MDDatePicker()
 		picker.bind(on_save=self.save_date_R3, on_cancel=self.cancel_date_R3)
@@ -1999,7 +2001,7 @@ class calendario(Screen):
 		time_picker = MDTimePicker()
 		time_picker.bind(time=self.save_time_R5, on_cancel=self.cancel_time_R5)
 		time_picker.open()
-		
+
 	def borrar_R1(self):
 		self.ids.fecha_R1.text = "-"
 		self.ids.hora_R1.text = "-"
@@ -2032,23 +2034,49 @@ class WindowManager(ScreenManager):
     pass
 
 
+
+
+HOST = "localhost"
+
+DATABASE = "SIC"
+
+USER = "root"
+
+PASSWORD = "Megustaredes321*"
+
+mydb = mysql.connect(host= HOST, database= DATABASE, user= USER, password= PASSWORD)
+
+c = mydb.cursor()
+
+
+
+def cursor (self, accion):
+    c.execute(accion)
+    for x in c:
+        print (x)
+
 class SIC(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.data_tableC = None
         self.data_tables1= None
+        self.data_tablesE1 = None
         self.data_tables2 = None
         self.data_tables3 = None
         self.data_tables4 = None
         self.listaEtapas = None
         self.menu = None
+        self.DNIA = None
+        self.idcliente = None
+        self.idcaso= None
+
 
     Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
-	
+
 
     def abrirPJN (instance):
         webbrowser.open('https://www.pjn.gov.ar/')
-	
+
     def abrirMEV (instance):
         webbrowser.open('https://mev.scba.gov.ar/loguin.asp')
 
@@ -2060,6 +2088,12 @@ class SIC(MDApp):
 
     def dropdown (self):
         self.listaEtapas = [
+            {
+                "viewclass" : "TwoLineListItem",
+                "text" : "Etapa 1",
+                "on_release" : lambda x= "Etapa 1": self.add_datatableE1()
+
+            },
             {
                 "viewclass" : "OneLineListItem",
                 "text" : "Etapa 2",
@@ -2085,7 +2119,7 @@ class SIC(MDApp):
             items = self.listaEtapas,
             width_mult = 4,
         )
-        self.menu.open() 
+        self.menu.open()
 
     def dropdown_user(self):
         self.menu_user = [
@@ -2100,111 +2134,83 @@ class SIC(MDApp):
             items = self.menu_user,
             width_mult = 4
         )
-        self.menu.open()  
+        self.menu.open()
 
     def login_pp(self):
         self.change_screen("main")
 
-    def add_datatableE2(self):
-        self.data_tables2 = MDDataTable(
-            size_hint=(0.8, 0.5),
-            pos_hint=(0.5, 0.4),
-            background_color_header="#D8CCB7",
-            use_pagination=True,
-            check=True,
-            column_data=[
-                ("No.", dp(30)),
-                ("Tipo", dp(30)),
-                ("Fecha de Inicio", dp(30)),
-                ("Motivo", dp(30)),
-                ("Etapa", dp (30)),
-            ],
-            row_data=[
-                (
-                    "1",
-                    "Denuncia",
-                    "1984-11-09",
-                    "Choque",
-                    "Etapa 2",
-                ),
-                (
-                    "2",
-                    "Divorcio",
-                    "2002-04-18",
-                    "Disputa",
-                    "Etapa 2",
-                ),
-            ]
-        )
-        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables2)
+    def change_screen(self, screen: str):
+        self.root.current = screen
 
-    def add_datatable3(self):
-        self.data_tables3 = MDDataTable(
-            size_hint=(0.8, 0.5),
-            pos_hint=(0.5, 0.4),
-            background_color_header="#D8CCB7",
-            use_pagination=True,
-            check=True,
-            column_data=[
-                ("No.", dp(30)),
-                ("Tipo", dp(30)),
-                ("Fecha de Inicio", dp(30)),
-                ("Motivo", dp(30)),
-                ("Etapa", dp (30)),
-            ],
-            row_data=[
-                (
-                    "1",
-                    "Denuncia",
-                    "1984-11-09",
-                    "Choque",
-                    "Etapa 3",
-                ),
-                (
-                    "2",
-                    "Divorcio",
-                    "2002-04-18",
-                    "Disputa",
-                    "Etapa 3",
-                ),
-            ]
-        )
-        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables3)
 
-    def add_datatable4(self):
-        self.data_tables4 = MDDataTable(
+
+    def login (self):
+        print(self.root.ids.login.ids.nombre.text)
+        print (self.root.ids.login.ids.psw.text)
+
+        query= "SELECT count(*) FROM Abogado where Nombre='"+str(self.root.ids.login.ids.nombre.text)+"'AND Psw='" +str(self.root.ids.login.ids.psw.text) + "'"
+        query2= "SELECT * FROM Abogado where Nombre='"+str(self.root.ids.login.ids.nombre.text)+"'AND Psw='" +str(self.root.ids.login.ids.psw.text) + "'"
+        c.execute(query)
+        data= c.fetchone()
+        count = data[0]
+        c.execute(query2)
+        tupla= c.fetchone()
+        lista= list(tupla)
+        dni= lista.pop(0)
+        r= 0
+        print(dni)
+        self.DNIA = dni
+        if count == 0:
+            print('Incorrecto')
+            r= 0
+        else:
+            print('Correcto')
+            r = 1
+            self.change_screen("Pantalla Principal")
+
+        if r == 1 and dni== 0000000:
+            self.change_screen("Pantalla Principal Admin")
+        else:
+            self.change_screen("Pantalla Principal")
+
+    def on_check_press(self, instance_table, current_row):
+        current= current_row
+        id= current.pop(0)
+        print(id)
+        self.idcliente = id
+
+    def add_datatable(self):
+
+        DATA= pd.read_sql_query("SELECT * FROM Cliente WHERE DNIA=" + str(self.DNIA), mydb)
+        cols = DATA.columns.values
+        values= DATA.values
+        self.data_tableC = MDDataTable(
             size_hint=(0.8, 0.5),
             pos_hint=(0.5, 0.4),
             background_color_header="#D8CCB7",
             use_pagination=True,
-            check=True,
+            check= True,
+
             column_data=[
-                ("No.", dp(30)),
-                ("Tipo", dp(30)),
-                ("Fecha de Inicio", dp(30)),
-                ("Motivo", dp(30)),
-                ("Etapa", dp (30)),
+                (col, dp(30))
+                for col in cols
             ],
-            row_data=[
-                (
-                    "1",
-                    "Denuncia",
-                    "1984-11-09",
-                    "Choque",
-                    "Etapa 4",
-                ),
-                (
-                    "2",
-                    "Divorcio",
-                    "2002-04-18",
-                    "Disputa",
-                    "Etapa 4",
-                ),
-            ]
+            row_data=values
         )
-        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables4)
+        self.data_tableC.bind(on_check_press=self.on_check_press)
+        self.root.ids.data_scr.ids.data_layout.add_widget(self.data_tableC)
+
+    def on_check_press1(self, instance_table, current_row):
+        current= current_row
+        id= current.pop(0)
+        print(id)
+        self.idcaso = id
 
     def add_datatable1(self):
+        print (self.idcliente)
+        DATA= pd.read_sql_query("SELECT * FROM Caso WHERE IDCliente="+ str(self.idcliente), mydb)
+        cols = DATA.columns.values
+        values= DATA.values
         self.data_tables1 = MDDataTable(
             size_hint=(0.8, 0.5),
             pos_hint=(0.5, 0.4),
@@ -2212,114 +2218,93 @@ class SIC(MDApp):
             use_pagination=True,
             check=True,
             column_data=[
-                ("No.", dp(30)),
-                ("Tipo", dp(30)),
-                ("Fecha de Inicio", dp(30)),
-                ("Motivo", dp(30)),
+                (col, dp(30))
+                for col in cols
             ],
-            row_data=[
-                (
-                    "1",
-                    "Denuncia",
-                    "1984-11-09",
-                    "Choque",
-                ),
-                (
-                    "2",
-                    "Divorcio",
-                    "2002-04-18",
-                    "Disputa"
-                ),
-            ]
+            row_data=values
         )
         self.root.ids.data_scr1.ids.data_layout1.add_widget(self.data_tables1)
+        self.data_tables1.bind(on_check_press=self.on_check_press1)
 
-    def add_datatable(self):
-        self.data_tableC = MDDataTable(
+
+    def add_datatableE1(self):
+        DATA= pd.read_sql_query("SELECT IDCaso, NombreC, Tipo, Motivo, FechaInicio FROM Caso INNER JOIN Cliente ON Caso.IDCliente = Cliente.IDCliente WHERE Cliente.DNIA="+ str(self.DNIA)+ " AND NEtapa=1;", mydb)
+        cols = DATA.columns.values
+        values= DATA.values
+        self.data_tablesE1 = MDDataTable(
             size_hint=(0.8, 0.5),
             pos_hint=(0.5, 0.4),
             background_color_header="#D8CCB7",
             use_pagination=True,
             check=True,
-
             column_data=[
-                ("Nombre", dp(30)),
-                ("Apellido", dp(20)),
-                ("DNI", dp(20)),
-                ("Direccion", dp(30)),
-                ("Telefono", dp(20)),
-                ("Email", dp(30)),
-                ("Tipo de caso", dp(20)),
-                ("Motivo", dp(30))
+                (col, dp(30))
+                for col in cols
             ],
-            row_data=[
-                (
-                    "Juan",
-                    "Rodriguez",
-                    "45320127",
-                    "Calle 1 N1",
-                    "1135432564",
-                    "juan@gmail.com",
-                    "Divorcio",
-                    "Pelea",
-
-                ),
-                (
-                    "Pepe",
-                    "Rodriguez",
-                    "45322127",
-                    "Calle 2 N2",
-                    "1135489764",
-                    "pepe@gmail.com",
-                    "Denuncia",
-                    "Choque"
-                ),
-                (
-                    "Pepe",
-                    "Rodriguez",
-                    "45322127",
-                    "Calle 2 N2",
-                    "1135489764",
-                    "pepe@gmail.com",
-                    "Denuncia",
-                    "Choque"
-                ),
-                (
-                    "Juan",
-                    "Rodriguez",
-                    "45320127",
-                    "Calle 1 N1",
-                    "1135432564",
-                    "juan@gmail.com",
-                    "Divorcio",
-                    "Pelea",
-
-                ),
-                (
-                    "Pepe",
-                    "Rodriguez",
-                    "45322127",
-                    "Calle 2 N2",
-                    "1135489764",
-                    "pepe@gmail.com",
-                    "Denuncia",
-                    "Choque"
-                ),
-                (
-                    "Juan",
-                    "Rodriguez",
-                    "45320127",
-                    "Calle 1 N1",
-                    "1135432564",
-                    "juan@gmail.com",
-                    "Divorcio",
-                    "Pelea",
-
-                ),
-
-            ]
+            row_data=values
         )
-        self.root.ids.data_scr.ids.data_layout.add_widget(self.data_tableC)
+        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tablesE1)
+        self.data_tablesE1.bind(on_check_press=self.on_check_press1)
+
+
+    def add_datatableE2(self):
+        DATA= pd.read_sql_query("SELECT IDCaso, NombreC, Tipo, Motivo, FechaInicio FROM Caso INNER JOIN Cliente ON Caso.IDCliente = Cliente.IDCliente WHERE Cliente.DNIA="+ str(self.DNIA)+ " AND NEtapa=2;", mydb)
+        cols = DATA.columns.values
+        values= DATA.values
+        self.data_tables2 = MDDataTable(
+            size_hint=(0.8, 0.5),
+            pos_hint=(0.5, 0.4),
+            background_color_header="#D8CCB7",
+            use_pagination=True,
+            check=True,
+            column_data=[
+                (col, dp(30))
+                for col in cols
+            ],
+            row_data=values
+        )
+        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables2)
+        self.data_tables2.bind(on_check_press=self.on_check_press1)
+
+    def add_datatable3(self):
+        DATA= pd.read_sql_query("SELECT IDCaso, NombreC, Tipo, Motivo, FechaInicio FROM Caso INNER JOIN Cliente ON Caso.IDCliente = Cliente.IDCliente WHERE Cliente.DNIA="+ str(self.DNIA)+ " AND NEtapa=3;", mydb)
+        cols = DATA.columns.values
+        values= DATA.values
+        self.data_tables3 = MDDataTable(
+            size_hint=(0.8, 0.5),
+            pos_hint=(0.5, 0.4),
+            background_color_header="#D8CCB7",
+            use_pagination=True,
+            check=True,
+            column_data=[
+                (col, dp(30))
+                for col in cols
+            ],
+            row_data=values
+        )
+        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables3)
+        self.data_tables3.bind(on_check_press=self.on_check_press1)
+
+    def add_datatable4(self):
+        DATA= pd.read_sql_query("SELECT IDCaso, NombreC, Tipo, Motivo, FechaInicio FROM Caso INNER JOIN Cliente ON Caso.IDCliente = Cliente.IDCliente WHERE Cliente.DNIA="+ str(self.DNIA)+ " AND NEtapa=4;", mydb)
+        cols = DATA.columns.values
+        values= DATA.values
+        self.data_tables4 = MDDataTable(
+            size_hint=(0.8, 0.5),
+            pos_hint=(0.5, 0.4),
+            background_color_header="#D8CCB7",
+            use_pagination=True,
+            check=True,
+            column_data=[
+                (col, dp(30))
+                for col in cols
+            ],
+            row_data=values
+        )
+        self.root.ids.data_scr2.ids.data_layout2.add_widget(self.data_tables4)
+        self.data_tables4.bind(on_check_press=self.on_check_press1)
+
+
 
     def change_screen(self, screen: str):
         self.root.current = screen
