@@ -10,7 +10,7 @@ import webbrowser
 from kivymd.uix.menu import MDDropdownMenu
 import mysql.connector as mysql
 import pandas as pd
-
+import datetime
 
 KV = """
 <LoginWindow>:
@@ -670,8 +670,9 @@ KV = """
                 size_hint: None, None
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("Clientes")
-
+                on_release:
+                    app.change_screen("Clientes")
+                    app.add_datatable()
             Image:
                 source: "logo.jpeg"
                 size_hint : None, None
@@ -707,7 +708,7 @@ KV = """
             MDRoundFlatButton:
 				id: botonCasoCliente
 				markup: True
-				text: "[color=#315582][b]Caso[/b][/color]"
+				text: "[color=#315582][b]Casos[/b][/color]"
 				font_size: 20
 				size_hint: .3, None
 				pos_hint: {"center_x": 0.5, "center_y": 0.50}
@@ -771,31 +772,16 @@ KV = """
                 width: 350
 
 
-
-            MDLabel:
-                id:ApellidoNC1
-                markup: True
-                text: "Apellido"
-                pos_hint: {"center_x": .87, "center_y": .55}
-                font_size: 16
-
-            MDTextField:
-                id: InputApellidoNC1
-                pos_hint: {"center_x": .5, "center_y": .50}
-                size_hint: None, None
-                width: 350
-
-
             MDLabel:
                 id:DNINC1
                 markup: True
                 text: "DNI"
-                pos_hint: {"center_x": .87, "center_y": .45}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputDNINC1
-                pos_hint: {"center_x": .5, "center_y": .40}
+                pos_hint: {"center_x": .5, "center_y": .50}
                 size_hint: None, None
                 width: 350
 
@@ -803,12 +789,12 @@ KV = """
                 id:DireccionNC1
                 markup: True
                 text: "Direccion"
-                pos_hint: {"center_x": .87, "center_y": .35}
+                pos_hint: {"center_x": .87, "center_y": .45}
                 font_size: 16
 
             MDTextField:
                 id: InputDireccionNC1
-                pos_hint: {"center_x": .5, "center_y": .30}
+                pos_hint: {"center_x": .5, "center_y": .40}
                 size_hint: None, None
                 width: 350
 
@@ -816,12 +802,12 @@ KV = """
                 id:TelefonoNC1
                 markup: True
                 text: "Telefono"
-                pos_hint: {"center_x": .87, "center_y": .25}
+                pos_hint: {"center_x": .87, "center_y": .35}
                 font_size: 16
 
             MDTextField:
                 id: InputTelefonoNC1
-                pos_hint: {"center_x": .5, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .30}
                 size_hint: None, None
                 width: 350
 
@@ -829,12 +815,12 @@ KV = """
                 id:EmailNC1
                 markup: True
                 text: "Email"
-                pos_hint: {"center_x": .87, "center_y": .15}
+                pos_hint: {"center_x": .87, "center_y": .25}
                 font_size: 16
 
             MDTextField:
                 id: InputEmailNC1
-                pos_hint: {"center_x": .5, "center_y": .10}
+                pos_hint: {"center_x": .5, "center_y": .20}
                 size_hint: None, None
                 width: 350
 
@@ -846,6 +832,10 @@ KV = """
                 width: 100
                 pos_hint: {"center_x": 0.5, "center_y": 0.05}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release:
+                    app.nuevocliente()
+                    app.change_screen("Clientes")
+                    app.add_datatable()
 
 
 <DatosCasos>
@@ -912,7 +902,7 @@ KV = """
                 width: 30
     			pos_hint: {"center_x": 0.66, "center_y": 0.57}
     			md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("NuevoCaso")
+                on_release: app.change_screen("nuevocaso")
 
 
     		MDIconButton:
@@ -928,7 +918,7 @@ KV = """
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
 
 <NuevoCaso>
-    name: "NuevoCaso"
+    name: "nuevocaso"
     MDBoxLayout:
 		size: 1, 1
 		orientation: "vertical"
@@ -974,7 +964,7 @@ KV = """
                 font_size: 16
 
             MDTextField:
-                id: InputTipoEC1
+                id: InputTipoCC1
                 pos_hint: {"center_x": .5, "center_y": .60}
                 size_hint: None, None
                 width: 350
@@ -1032,6 +1022,11 @@ KV = """
                 width: 100
                 pos_hint: {"center_x": 0.5, "center_y": 0.15}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release:
+                    app.nuevocaso()
+                    app.change_screen("DatosCasos")
+                    app.add_datatable1()
+
 
 <MenuCaso>
     name: "MenuCaso"
@@ -1049,7 +1044,9 @@ KV = """
                 size_hint: None, None
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("DatosCasos")
+                on_release:
+                    app.change_screen("DatosCasos")
+                    app.add_datatable1()
 
             Image:
                 source: "logo.jpeg"
@@ -1112,6 +1109,16 @@ KV = """
 				pos_hint: {"center_x": 0.5, "center_y": 0.30}
 				md_bg_color: 0.93, 0.69, 0.63, 0.2
 				on_release: app.change_screen("Etapa4")
+
+            MDRoundFlatButton:
+				id: botonEtapafechafin
+				markup: True
+				text: "[color=#315582][b]Establecer Fecha Fin[/b][/color]"
+				font_size: 20
+				size_hint: .3, None
+				pos_hint: {"center_x": 0.5, "center_y": 0.20}
+				md_bg_color: 0.93, 0.69, 0.63, 0.2
+				on_release: app.fechafin()
 
 <Etapa2>
     name:"Etapa2"
@@ -1489,7 +1496,8 @@ KV = """
                 size_hint: None, None
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("MenuCaso")
+                on_release:
+                    app.change_screen("MenuCaso")
 
             Image:
                 source: "logo.jpeg"
@@ -1508,7 +1516,7 @@ KV = """
             MDLabel:
                 id:TituloCC1
                 markup: True
-                text: "[color=#315582][b]Caso[/b][/color]"
+                text: "[color=#315582][b]Editar Caso[/b][/color]"
                 pos_hint: {"center_x": .96, "center_y": .75}
                 font_size: 30
 
@@ -1542,31 +1550,15 @@ KV = """
 
 
             MDLabel:
-                id:FechaFinCC1
+                id:MotivoCC1
                 markup: True
-                text: "Fecha de Finalización"
+                text: "Motivo"
                 pos_hint: {"center_x": .87, "center_y": .40}
                 font_size: 16
 
             MDTextField:
-                id: InputFechaFinCC1
-                pos_hint: {"center_x": .5, "center_y": .35}
-                size_hint: None, None
-                helper_text: "Año-Mes-Día"
-                helper_text_mode: "persistent"
-                width: 350
-
-
-            MDLabel:
-                id:MotivoCC1
-                markup: True
-                text: "Motivo"
-                pos_hint: {"center_x": .87, "center_y": .25}
-                font_size: 16
-
-            MDTextField:
                 id: InputMotivoCC1
-                pos_hint: {"center_x": .5, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .35}
                 size_hint: None, None
                 width: 350
 
@@ -1576,8 +1568,11 @@ KV = """
                 text: "[color=#315582][b]Guardar Datos[/b][/color]"
                 size_hint: None, None
                 width: 100
-                pos_hint: {"center_x": 0.5, "center_y": 0.15}
+                pos_hint: {"center_x": 0.5, "center_y": 0.25}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release:
+                    app.editarcaso()
+                    app.change_screen("MenuCaso")
 
 <EditarClientes>
     name:"EditarClientes"
@@ -1595,7 +1590,8 @@ KV = """
                 size_hint: None, None
                 pos_hint: {"center_x": 0.05, "center_y": 0.95}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("menucliente")
+                on_release:
+                    app.change_screen("menucliente")
 
             Image:
                 source: "logo.jpeg"
@@ -1633,30 +1629,17 @@ KV = """
 
 
 
-            MDLabel:
-                id:ApellidoEC1
-                markup: True
-                text: "Apellido"
-                pos_hint: {"center_x": .87, "center_y": .55}
-                font_size: 16
-
-            MDTextField:
-                id: InputApellidoEC1
-                pos_hint: {"center_x": .5, "center_y": .50}
-                size_hint: None, None
-                width: 350
-
 
             MDLabel:
                 id:DNIEC1
                 markup: True
                 text: "DNI"
-                pos_hint: {"center_x": .87, "center_y": .45}
+                pos_hint: {"center_x": .87, "center_y": .55}
                 font_size: 16
 
             MDTextField:
                 id: InputDNIEC1
-                pos_hint: {"center_x": .5, "center_y": .40}
+                pos_hint: {"center_x": .5, "center_y": .50}
                 size_hint: None, None
                 width: 350
 
@@ -1664,12 +1647,12 @@ KV = """
                 id:DireccionEC1
                 markup: True
                 text: "Direccion"
-                pos_hint: {"center_x": .87, "center_y": .35}
+                pos_hint: {"center_x": .87, "center_y": .45}
                 font_size: 16
 
             MDTextField:
                 id: InputDireccionEC1
-                pos_hint: {"center_x": .5, "center_y": .30}
+                pos_hint: {"center_x": .5, "center_y": .40}
                 size_hint: None, None
                 width: 350
 
@@ -1677,12 +1660,12 @@ KV = """
                 id:TelefonoEC1
                 markup: True
                 text: "Telefono"
-                pos_hint: {"center_x": .87, "center_y": .25}
+                pos_hint: {"center_x": .87, "center_y": .35}
                 font_size: 16
 
             MDTextField:
                 id: InputTelefonoEC1
-                pos_hint: {"center_x": .5, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .30}
                 size_hint: None, None
                 width: 350
 
@@ -1690,12 +1673,12 @@ KV = """
                 id:EmailEC1
                 markup: True
                 text: "Email"
-                pos_hint: {"center_x": .87, "center_y": .15}
+                pos_hint: {"center_x": .87, "center_y": .25}
                 font_size: 16
 
             MDTextField:
                 id: InputEmailEC1
-                pos_hint: {"center_x": .5, "center_y": .10}
+                pos_hint: {"center_x": .5, "center_y": .20}
                 size_hint: None, None
                 width: 350
 
@@ -1707,6 +1690,9 @@ KV = """
                 width: 100
                 pos_hint: {"center_x": 0.5, "center_y": 0.05}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release:
+                    app.editarcliente()
+                    app.change_screen("menucliente")
 
 <RegistroUsuario>
     name:"registro"
@@ -1783,7 +1769,7 @@ KV = """
                 font_size: 16
 
             MDTextField:
-                id: InputContraseñaA
+                id: InputContrasenaA
                 pos_hint: {"center_x": .5, "center_y": .40}
                 size_hint: None, None
                 width: 350
@@ -1796,6 +1782,8 @@ KV = """
                 width: 100
                 pos_hint: {"center_x": 0.5, "center_y": 0.3}
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
+                on_release:
+                    app.nuevouser()
 
 WindowManager:
     LoginWindow:
@@ -1813,6 +1801,7 @@ WindowManager:
         id: data_scr2
 
     RegistroUsuario:
+        id: registroU
 
     Etapa2:
 
@@ -1821,10 +1810,11 @@ WindowManager:
     Etapa4:
 
     Caso:
-
+        id: Caso
     MenuCaso:
 
     NuevoCaso:
+        id: nuevocaso
 
     DatosCasos:
         id: data_scr1
@@ -1832,9 +1822,9 @@ WindowManager:
     menucliente:
 
     NuevoCliente:
-
+        id: nuevocliente
     EditarClientes:
-
+        id: editarcliente
     ClientWindow:
         id: data_scr
 
@@ -2143,7 +2133,6 @@ class SIC(MDApp):
         self.root.current = screen
 
 
-
     def login (self):
         print(self.root.ids.login.ids.nombre.text)
         print (self.root.ids.login.ids.psw.text)
@@ -2172,6 +2161,40 @@ class SIC(MDApp):
             self.change_screen("Pantalla Principal Admin")
         else:
             self.change_screen("Pantalla Principal")
+
+    def nuevouser (self):
+        c.execute("INSERT INTO Abogado (DNI, Nombre, Psw) VALUES ('"+str(self.root.ids.registroU.ids.InputDNIA.text)+"', '"+ str(self.root.ids.registroU.ids.InputNombreA.text)+"', '"+str(self.root.ids.registroU.ids.InputContrasenaA.text)+"');")
+        mydb.commit()
+
+
+    def nuevocliente (self):
+        c.execute("INSERT INTO Cliente (NombreC, DNIC, Direccion, Telefono, Mail, DNIA) VALUES ('"+ str(self.root.ids.nuevocliente.ids.InputNombreNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.InputDNINC1.text) +"', '"+ str(self.root.ids.nuevocliente.ids.InputDireccionNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.InputTelefonoNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.EmailNC1.text)+"', "+str(self.DNIA)+");")
+        mydb.commit()
+
+    def editarcliente(self):
+        c.execute("UPDATE Cliente SET NombreC =  '"+ str(self.root.ids.editarcliente.ids.InputNombreEC1.text) + "', DNIC= '"+ str(self.root.ids.editarcliente.ids.InputDNIEC1.text)+ "', Direccion= '"+ str(self.root.ids.editarcliente.ids.InputDireccionEC1.text)+"', Telefono= '"+ str(self.root.ids.editarcliente.ids.InputTelefonoEC1.text)+"', Mail= '"+str(self.root.ids.editarcliente.ids.InputEmailEC1.text)+ "' WHERE IDCliente= "+ str(self.idcliente))
+        mydb.commit()
+
+    def nuevocaso(self):
+        c.execute("INSERT INTO Caso (Tipo, FechaInicio, Motivo, IDCliente) VALUES ('"+ str(self.root.ids.nuevocaso.ids.InputTipoCC1.text)+"', '"+str(self.root.ids.nuevocaso.ids.InputFechaInicioCC1.text)+"', '"+ str(self.root.ids.nuevocaso.ids.InputMotivoCC1.text)+"', "+ str(self.idcliente)+");")
+        mydb.commit()
+        c.execute("")
+
+    def editarcaso(self):
+        c.execute("UPDATE Caso SET Tipo='"+ str(self.root.ids.Caso.ids.InputTipoEC1.text)+ "', FechaInicio= '"+str(self.root.ids.Caso.ids.InputFechaInicioCC1.text)+"', Motivo='"+ str(self.root.ids.Caso.ids.InputMotivoCC1.text)+"'WHERE IDCaso="+ self.idcaso)
+        mydb.commit()
+
+    def fechafin(self):
+        x= datetime.datetime.now()
+        anio= x.strftime("%Y")
+        mes= x.strftime("%m")
+        dia= x.strftime("%d")
+
+        fecha= "'"+anio + "-" + mes + "-" + dia+"'"
+        print(fecha)
+        c.execute("UPDATE Caso SET FechaFin= "+ fecha +" WHERE IDCaso="+ self.idcaso+";")
+
+
 
     def on_check_press(self, instance_table, current_row):
         current= current_row
