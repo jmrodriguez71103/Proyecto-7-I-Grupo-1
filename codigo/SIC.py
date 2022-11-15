@@ -24,55 +24,56 @@ KV = """
 		size: 1, 1
 		orientation: "vertical"
 		md_bg_color: 0.85, 0.8, 0.72, .8
-    	MDCard:
-    		size_hint: None, None
-    		size: 400, 500
-    		pos_hint: {"center_x": 0.5, "center_y": 0.6}
-    		padding: 15
-    		spacing: 25
-    		orientation: 'vertical'
-    		md_bg_color: 0.85, 0.8, 0.72, 1
+	MDCard:
+		size_hint: None, None
+		size: 400, 500
+		pos_hint: {"center_x": .5, "center_y": 0.5}
+		padding: 15
+		spacing: 25
+		orientation: 'vertical'
+		md_bg_color: 0.85, 0.8, 0.72, 1
 
-    		MDLabel:
-    			id: prueba
-    			text: "Sistema Integral de Clientes"
-    			font_size: 40
-    			halign: 'center'
-    			size_hint_y: None
-    			padding_y: 10
+		MDLabel:
+			id: prueba
+            markup: True
+			text: "[color=#315582]Sistema Integral de Clientes[/color]"
+			font_size: 40
+			halign: 'center'
+			size_hint_y: None
+			padding_y: 10
 
-    		Image:
-    			source: "logo.jpeg"
-    			size_hint : None, None
-    			pos_hint: {"center_x": 0.5}
+		Image:
+			source: "logo.jpeg"
+			size_hint : None, None
+			pos_hint: {"center_x": 0.5}
 
-    		MDTextField:
-    			id: nombre
-    			hint_text: "Usuario"
-    			icon_right: "account"
-    			size_hint: None, None
-    			width: 200
-    			font_size: 16
-    			pos_hint: {"center_x": 0.5}
+		MDTextField:
+			id: nombre
+			hint_text: "Usuario"
+			icon_right: "account"
+			size_hint: None, None
+			width: 200
+			font_size: 16
+			pos_hint: {"center_x": 0.5}
 
-    		MDTextField:
-    			id: psw
-    			hint_text: "Contraseña"
-    			icon_right: "lock"
-                password: True
-    			size_hint: None, None
-    			width: 200
-    			font_size: 16
-    			pos_hint: {"center_x": 0.5}
+		MDTextField:
+			id: psw
+			hint_text: "Contraseña"
+			icon_right: "lock"
+            password: True
+			size_hint: None, None
+			width: 200
+			font_size: 16
+			pos_hint: {"center_x": 0.5}
 
-    		MDRoundFlatButton:
-    			id: boton1
-    			text: "Ingresar"
-    			size_hint: None, None
-    			width: 100
-    			pos_hint: {"center_x": 0.5}
-    			on_release:
-                    app.login()
+		MDRoundFlatButton:
+			id: boton1
+			text: "Ingresar"
+			size_hint: None, None
+			width: 100
+			pos_hint: {"center_x": 0.5}
+			on_release:
+                app.login()
 
 <pantallaPrincipalAdmin>:
 	name: "Pantalla Principal Admin"
@@ -132,8 +133,6 @@ KV = """
 				size_hint: .2, None
 				pos_hint: {"center_x": 0.5, "center_y": 0.65}
 				on_release:
-                    app.change_screen("Clientes")
-                    app.add_datatable()
 				md_bg_color: 0.93, 0.69, 0.63, 0.2
 
 			MDRoundFlatButton:
@@ -143,7 +142,7 @@ KV = """
 				font_size: 20
 				size_hint: .2, None
 				pos_hint: {"center_x": 0.5, "center_y": 0.55}
-				on_release: app.change_screen("etapas")
+				on_release:
 				md_bg_color: 0.93, 0.69, 0.63, 0.2
 
 			MDRoundFlatButton:
@@ -333,7 +332,7 @@ KV = """
                 width: 30
     			pos_hint: {"center_x": 0.80, "center_y": 0.57}
     			md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("menucliente")
+                on_release: app.Menucliente()
 
             MDIconButton:
     			id: botonAgregar
@@ -381,7 +380,7 @@ KV = """
                 width: 30
     			pos_hint: {"center_x": 0.73, "center_y": 0.57}
     			md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("MenuCaso")
+                on_release: app.menucaso()
 
             MDRoundFlatButton:
         		id: botonLlamarEtapas
@@ -945,7 +944,7 @@ KV = """
                 width: 30
     			pos_hint: {"center_x": 0.73, "center_y": 0.57}
     			md_bg_color: 0.93, 0.69, 0.63, 0.2
-                on_release: app.change_screen("MenuCaso")
+                on_release: app.menucaso()
 
             MDIconButton:
     			id: botonAgregarCasos
@@ -999,7 +998,7 @@ KV = """
                 id:TituloCC1
                 markup: True
                 text: "[color=#315582][b]Nuevo Caso[/b][/color]"
-                pos_hint: {"center_x": .96, "center_y": .75}
+                pos_hint: {"center_x": .94, "center_y": .75}
                 font_size: 30
 
             MDLabel:
@@ -1032,31 +1031,15 @@ KV = """
 
 
             MDLabel:
-                id:FechaFinCC1
+                id:MotivoCC1
                 markup: True
-                text: "Fecha de Finalización"
+                text: "Motivo"
                 pos_hint: {"center_x": .87, "center_y": .40}
                 font_size: 16
 
             MDTextField:
-                id: InputFechaFinCC1
-                pos_hint: {"center_x": .5, "center_y": .35}
-                size_hint: None, None
-                helper_text: "Año-Mes-Día"
-                helper_text_mode: "persistent"
-                width: 350
-
-
-            MDLabel:
-                id:MotivoCC1
-                markup: True
-                text: "Motivo"
-                pos_hint: {"center_x": .87, "center_y": .25}
-                font_size: 16
-
-            MDTextField:
                 id: InputMotivoCC1
-                pos_hint: {"center_x": .5, "center_y": .20}
+                pos_hint: {"center_x": .5, "center_y": .35}
                 size_hint: None, None
                 width: 350
 
@@ -1976,6 +1959,7 @@ KV = """
                 md_bg_color: 0.93, 0.69, 0.63, 0.2
                 on_release:
                     app.nuevouser()
+                    app.change_screen("Pantalla Principal Admin")
 
 WindowManager:
     LoginWindow:
@@ -2499,12 +2483,36 @@ class SIC(MDApp):
 
 
     def nuevocliente (self):
-        c.execute("INSERT INTO Cliente (NombreC, DNIC, Direccion, Telefono, Mail, DNIA) VALUES ('"+ str(self.root.ids.nuevocliente.ids.InputNombreNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.InputDNINC1.text) +"', '"+ str(self.root.ids.nuevocliente.ids.InputDireccionNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.InputTelefonoNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.EmailNC1.text)+"', "+str(self.DNIA)+");")
+        c.execute("INSERT INTO Cliente (NombreC, DNIC, Direccion, Telefono, Mail, DNIA) VALUES ('"+ str(self.root.ids.nuevocliente.ids.InputNombreNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.InputDNINC1.text) +"', '"+ str(self.root.ids.nuevocliente.ids.InputDireccionNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.InputTelefonoNC1.text)+"', '"+str(self.root.ids.nuevocliente.ids.InputEmailNC1.text)+"', "+str(self.DNIA)+");")
         mydb.commit()
 
     def editarcliente(self):
-        c.execute("UPDATE Cliente SET NombreC =  '"+ str(self.root.ids.editarcliente.ids.InputNombreEC1.text) + "', DNIC= '"+ str(self.root.ids.editarcliente.ids.InputDNIEC1.text)+ "', Direccion= '"+ str(self.root.ids.editarcliente.ids.InputDireccionEC1.text)+"', Telefono= '"+ str(self.root.ids.editarcliente.ids.InputTelefonoEC1.text)+"', Mail= '"+str(self.root.ids.editarcliente.ids.InputEmailEC1.text)+ "' WHERE IDCliente= "+ str(self.idcliente))
-        mydb.commit()
+        Nombre= str(self.root.ids.editarcliente.ids.InputNombreEC1.text)
+        DNI= str(self.root.ids.editarcliente.ids.InputDNIEC1.text)
+        Direccion= str(self.root.ids.editarcliente.ids.InputDireccionEC1.text)
+        Telefono= str(self.root.ids.editarcliente.ids.InputTelefonoEC1.text)
+        Mail= str(self.root.ids.editarcliente.ids.InputEmailEC1.text)
+        res= bool(Nombre)
+        if res:
+            c.execute("UPDATE Cliente SET NombreC =  '"+ str(self.root.ids.editarcliente.ids.InputNombreEC1.text) + "' WHERE IDCliente= "+ str(self.idcliente))
+            mydb.commit()
+        res1= bool(DNI)
+        if res1:
+            c.execute("UPDATE Cliente SET DNIC= '"+ str(self.root.ids.editarcliente.ids.InputDNIEC1.text)+ "' WHERE IDCliente= "+ str(self.idcliente))
+            mydb.commit()
+        res2= bool(Direccion)
+        if res2:
+            c.execute("UPDATE Cliente SET Direccion= '"+ str(self.root.ids.editarcliente.ids.InputDireccionEC1.text)+"' WHERE IDCliente= "+ str(self.idcliente))
+            mydb.commit()
+        res3= bool(Telefono)
+        if res3:
+            c.execute("UPDATE Cliente SET Telefono= '"+ str(self.root.ids.editarcliente.ids.InputTelefonoEC1.text)+"' WHERE IDCliente= "+ str(self.idcliente))
+            mydb.commit()
+        res4= bool(Mail)
+        if res4:
+            c.execute("UPDATE Cliente SET Mail= '"+str(self.root.ids.editarcliente.ids.InputEmailEC1.text)+ "' WHERE IDCliente= "+ str(self.idcliente))
+            mydb.commit()
+    
 
     def nuevocaso(self):
         c.execute("INSERT INTO Caso (Tipo, FechaInicio, Motivo, IDCliente) VALUES ('"+ str(self.root.ids.nuevocaso.ids.InputTipoCC1.text)+"', '"+str(self.root.ids.nuevocaso.ids.InputFechaInicioCC1.text)+"', '"+ str(self.root.ids.nuevocaso.ids.InputMotivoCC1.text)+"', "+ str(self.idcliente)+");")
@@ -2517,10 +2525,36 @@ class SIC(MDApp):
         c.execute("INSERT INTO Etapas (IDCaso) VALUES ("+str(self.idcaso)+");")
         mydb.commit()
 
+    def menucaso(self):
+        res = bool(self.idcaso)
+        if res:
+            self.change_screen("MenuCaso")
+
+    def Menucliente(self):
+        res = bool(self.idcliente)
+        if res:
+            self.change_screen("menucliente")
 
     def editarcaso(self):
-        c.execute("UPDATE Caso SET Tipo='"+ str(self.root.ids.Caso.ids.InputTipoEC1.text)+ "', FechaInicio= '"+str(self.root.ids.Caso.ids.InputFechaInicioCC1.text)+"', Motivo='"+ str(self.root.ids.Caso.ids.InputMotivoCC1.text)+"'WHERE IDCaso="+ self.idcaso)
-        mydb.commit()
+        Tipo= str(self.root.ids.Caso.ids.InputTipoEC1.text)
+        res= bool(Tipo)
+        if res:
+            c.execute("UPDATE Caso SET Tipo='"+ str(self.root.ids.Caso.ids.InputTipoEC1.text)+"' WHERE IDCaso="+ self.idcaso)
+            mydb.commit()
+
+        FechaInicio= str(self.root.ids.Caso.ids.InputFechaInicioCC1.text)
+        res1= bool(FechaInicio)
+        if res1:
+            c.execute("UPDATE Caso SET FechaInicio= '"+str(self.root.ids.Caso.ids.InputFechaInicioCC1.text)+"' WHERE IDCaso="+ self.idcaso)
+            mydb.commit()
+
+        Motivo= str(self.root.ids.Caso.ids.InputMotivoCC1.text)
+        res2= bool(Motivo)
+        if res2:
+            c.execute("UPDATE Caso SET Motivo='"+ str(self.root.ids.Caso.ids.InputMotivoCC1.text)+"' WHERE IDCaso="+ self.idcaso)
+            mydb.commit()
+
+
 
     def fechafin(self):
         x= datetime.datetime.now()
@@ -2684,9 +2718,9 @@ class SIC(MDApp):
 
     def borrarcaso(self, obj):
         self.dialogcaso.dismiss()
-        c.execute("DELETE FROM Caso WHERE IDCaso= "+self.idcaso+";")
-        mydb.commit()
         c.execute("DELETE FROM Etapas WHERE IDCaso="+self.idcaso+";")
+        mydb.commit()
+        c.execute("DELETE FROM Caso WHERE IDCaso= "+self.idcaso+";")
         mydb.commit()
 
 
@@ -2814,89 +2848,93 @@ class SIC(MDApp):
             fp.write(''+str(motivo)+'')
             c.execute("SELECT Firma, FechaFirma, LugarFirma, FechaInicioE3, FechaComisionMedica, FechaCierreE3, PresentaPD, FechaDictamen, FechaConciliación, EtapaInicio, FechaInicio, EtapaIntermedia, FechaIntermedia, EtapaFinal, FechaFinal FROM Etapas WHERE IDCaso="+str(self.idcaso)+";")
             data1= c.fetchone()
-            datos1= list(data1)
-            print(datos1)
-            resD= bool(datos1)
-            print(resD)
-            if resD:
-                Firma= datos1.pop(0)
-                FechaFirma= datos1.pop(0)
-                LugarFirma= datos1.pop(0)
-                FechaInicioE3= datos1.pop(0)
-                FechaComisionMedica= datos1.pop(0)
-                FechaCierreE3= datos1.pop(0)
-                PresentaPD= datos1.pop(0)
-                FechaDictamen= datos1.pop(0)
-                FechaConciliación= datos1.pop(0)
-                EtapaInicio= datos1.pop(0)
-                FechaInicio= datos1.pop(0)
-                EtapaIntermedia= datos1.pop(0)
-                FechaIntermedia= datos1.pop(0)
-                EtapaFinal= datos1.pop(0)
-                FechaFinal= datos1.pop(0)
+            resX= bool(data1)
+            if resX:
+                datos1= list(data1)
+                resD= bool(datos1)
+                print(resD)
+                if resD:
+                    Firma= datos1.pop(0)
+                    FechaFirma= datos1.pop(0)
+                    LugarFirma= datos1.pop(0)
+                    FechaInicioE3= datos1.pop(0)
+                    FechaComisionMedica= datos1.pop(0)
+                    FechaCierreE3= datos1.pop(0)
+                    PresentaPD= datos1.pop(0)
+                    FechaDictamen= datos1.pop(0)
+                    FechaConciliación= datos1.pop(0)
+                    EtapaInicio= datos1.pop(0)
+                    FechaInicio= datos1.pop(0)
+                    EtapaIntermedia= datos1.pop(0)
+                    FechaIntermedia= datos1.pop(0)
+                    EtapaFinal= datos1.pop(0)
+                    FechaFinal= datos1.pop(0)
 
-                res = bool(Firma)
-                if res == True:
-                    fp.write(' Firma: ')
-                    fp.write(''+str(Firma)+'')
+                    res = bool(Firma)
+                    if res == True:
+                        fp.write(' Firma: ')
+                        fp.write(''+str(Firma)+'')
 
-                res1 = bool(FechaFirma)
-                if res1 == True:
-                    fp.write(' Fecha de Firma: ')
-                    fp.write(''+str(FechaFirma)+'')
-                res2 = bool(LugarFirma)
-                if res2 == True:
-                    fp.write(' Lugar de Firma: ')
-                    fp.write(''+str(LugarFirma)+'')
-                res3 = bool(FechaInicioE3)
-                if res3 == True:
-                    fp.write(' Fecha de Inicio de la Etapa 3: ')
-                    fp.write(''+str(FechaInicioE3)+'')
-                res4 = bool(FechaComisionMedica)
-                if res4 == True:
-                    fp.write(' Fecha de Comision Medica: ')
-                    fp.write(''+str(FechaComisionMedica)+'')
-                res5 = bool(FechaCierreE3)
-                if res5 == True:
-                    fp.write(' Fecha del Cierre de la Etapa 3: ')
-                    fp.write(''+str(Firma)+'')
-                res6 = bool(PresentaPD)
-                if res6 == True:
-                    fp.write(' ¿Presenta Pronto Despacho? ')
-                    fp.write(''+str(PresentaPD)+'')
-                res7 = bool(FechaDictamen)
-                if res7 == True:
-                    fp.write(' Fecha del Dictamen: ')
-                    fp.write(''+str(FechaDictamen)+'')
-                res8 = bool(FechaConciliación)
-                if res8 == True:
-                    fp.write(' Fecha de Conciliacion: ')
-                    fp.write(''+str(FechaConciliación)+'')
-                res9 = bool(EtapaInicio)
-                if res9 == True:
-                    fp.write(' Etapa Inicio: ')
-                    fp.write(''+str(EtapaInicio)+'')
-                res10 = bool(FechaInicio)
-                if res10 == True:
-                    fp.write(' Fecha de la Etapa Inicial: ')
-                    fp.write(''+str(FechaInicio)+'')
-                res11 = bool(EtapaIntermedia)
-                if res11 == True:
-                    fp.write(' Etapa Intermedia: ')
-                    fp.write(''+str(EtapaIntermedia)+'')
-                res12 = bool(FechaIntermedia)
-                if res12 == True:
-                    fp.write(' Fecha de la Etapa Intermedia: ')
-                    fp.write(''+str(FechaIntermedia)+'')
-                res13 = bool(EtapaFinal)
-                if res13 == True:
-                    fp.write(' Etapa Final: ')
-                    fp.write(''+str(EtapaFinal)+'')
-                res14 = bool(FechaFinal)
-                if res14 == True:
-                    fp.write(' Fecha de la Etapa Final: ')
-                    fp.write(''+str(FechaFinal)+'')
-
+                    res1 = bool(FechaFirma)
+                    if res1 == True:
+                        fp.write(' Fecha de Firma: ')
+                        fp.write(''+str(FechaFirma)+'')
+                    res2 = bool(LugarFirma)
+                    if res2 == True:
+                        fp.write(' Lugar de Firma: ')
+                        fp.write(''+str(LugarFirma)+'')
+                    res3 = bool(FechaInicioE3)
+                    if res3 == True:
+                        fp.write(' Fecha de Inicio de la Etapa 3: ')
+                        fp.write(''+str(FechaInicioE3)+'')
+                    res4 = bool(FechaComisionMedica)
+                    if res4 == True:
+                        fp.write(' Fecha de Comision Medica: ')
+                        fp.write(''+str(FechaComisionMedica)+'')
+                    res5 = bool(FechaCierreE3)
+                    if res5 == True:
+                        fp.write(' Fecha del Cierre de la Etapa 3: ')
+                        fp.write(''+str(Firma)+'')
+                    res6 = bool(PresentaPD)
+                    if res6 == True:
+                        fp.write(' ¿Presenta Pronto Despacho? ')
+                        fp.write(''+str(PresentaPD)+'')
+                    res7 = bool(FechaDictamen)
+                    if res7 == True:
+                        fp.write(' Fecha del Dictamen: ')
+                        fp.write(''+str(FechaDictamen)+'')
+                    res8 = bool(FechaConciliación)
+                    if res8 == True:
+                        fp.write(' Fecha de Conciliacion: ')
+                        fp.write(''+str(FechaConciliación)+'')
+                    res9 = bool(EtapaInicio)
+                    if res9 == True:
+                        fp.write(' Etapa Inicio: ')
+                        fp.write(''+str(EtapaInicio)+'')
+                    res10 = bool(FechaInicio)
+                    if res10 == True:
+                        fp.write(' Fecha de la Etapa Inicial: ')
+                        fp.write(''+str(FechaInicio)+'')
+                    res11 = bool(EtapaIntermedia)
+                    if res11 == True:
+                        fp.write(' Etapa Intermedia: ')
+                        fp.write(''+str(EtapaIntermedia)+'')
+                    res12 = bool(FechaIntermedia)
+                    if res12 == True:
+                        fp.write(' Fecha de la Etapa Intermedia: ')
+                        fp.write(''+str(FechaIntermedia)+'')
+                    res13 = bool(EtapaFinal)
+                    if res13 == True:
+                        fp.write(' Etapa Final: ')
+                        fp.write(''+str(EtapaFinal)+'')
+                    res14 = bool(FechaFinal)
+                    if res14 == True:
+                        fp.write(' Fecha de la Etapa Final: ')
+                        fp.write(''+str(FechaFinal)+'')
+                    res15 = bool(fechafin)
+                    if res15:
+                        fp.write(' Fecha de finalización del caso: ')
+                        fp.write(''+str(fechafin)+'')
 
 
 
