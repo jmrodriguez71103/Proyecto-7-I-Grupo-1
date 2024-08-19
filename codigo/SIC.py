@@ -2078,7 +2078,7 @@ DATABASE = "SIC"
 
 USER = "root"
 
-PASSWORD = "Megustaredes321*"
+PASSWORD = "Contraseña"
 
 mydb = mysql.connect(host= HOST, database= DATABASE, user= USER, password= PASSWORD)
 
